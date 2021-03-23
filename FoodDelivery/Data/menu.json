@@ -1,0 +1,21 @@
+[{
+    "name": "Pepperoni",
+    "type": "pizza",
+    "imageName": ""
+},
+{
+    "name": "Margherita",
+    "type": "pizza",
+    "imageName": ""
+},
+{
+    "name": "Sushi #1",
+    "type": "sushi",
+    "imageName": ""
+},
+{
+    "name": "Sushi #2",
+    "type": "sushi",
+    "imageName": ""
+}
+]
