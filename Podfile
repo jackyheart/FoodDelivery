@@ -6,6 +6,9 @@ target 'FoodDelivery' do
   use_frameworks!
 
   # Pods for FoodDelivery
+  pod 'RxSwift', '4.5.0'
+  pod 'RxCocoa', '4.5.0'
+  pod 'ObjectMapper', '4.2.0'
 
   target 'FoodDeliveryTests' do
     inherit! :search_paths
