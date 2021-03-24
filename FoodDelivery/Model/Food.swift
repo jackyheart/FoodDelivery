@@ -6,8 +6,24 @@
 //  Copyright © 2021 Jacky Tjoa. All rights reserved.
 //
 
-struct Food: Decodable {
-    let name: String
-    let type: String
-    let imageName: String
+import ObjectMapper
+
+struct Food: Mappable {
+    var name: String = ""
+    var type: String = ""
+    var description: String = ""
+    var imageName: String = ""
+    var price: Double = 0.0
+    
+    init?(map: Map) {
+
+    }
+    
+    mutating func mapping(map: Map) {
+        name <- map["name"]
+        type <- map["type"]
+        description <- map["description"]
+        imageName <- map["imageName"]
+        price <- map["price"]
+    }
 }

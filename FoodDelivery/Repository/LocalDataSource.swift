@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import ObjectMapper
 
 class LocalDataSource: MenuDataSourceProtocol {
     
@@ -25,8 +26,19 @@ class LocalDataSource: MenuDataSourceProtocol {
             
             do {
                 let data = try Data(contentsOf: url)
-                let menu = try JSONDecoder().decode([Food].self, from: data)
-                observer.onNext(menu)
+                
+                do {
+                    if let jsonArr = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]] {
+                       let menu = Mapper<Food>().mapArray(JSONArray: jsonArr)
+                        observer.onNext(menu)
+                    }
+                    
+                } catch {
+                    let error = NSError(domain: "", code: -2, userInfo: ["reason": "couldn't decode JSON"])
+                    observer.onError(error)
+                    return Disposables.create { }
+                }
+                
             } catch {
                 print(error)
             }
