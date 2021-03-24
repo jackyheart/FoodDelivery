@@ -8,24 +8,21 @@
 
 import UIKit
 
-protocol MenuPresenterDelegate: class {
-    func onMenuLoaded(menu: [Food])
-}
-
 class MenuPresenter {
 
     private let interactor: MenuInteractorProtocol
     private let router: MenuRouterProtocol
-    weak var delegate: MenuPresenterDelegate?
+    private weak var view: MenuViewProtocol?
     
-    init(interactor: MenuInteractorProtocol, router: MenuRouterProtocol) {
+    init(interactor: MenuInteractorProtocol, router: MenuRouterProtocol, view: MenuViewProtocol) {
         self.interactor = interactor
         self.router = router
+        self.view = view
     }
     
     func onViewDidLoad() {
         let menu = interactor.getMenuList()
-        delegate?.onMenuLoaded(menu: menu)
+        view?.displayMenu(menu: menu)
     }
     
     func onNextPressed() {

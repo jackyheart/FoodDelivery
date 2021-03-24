@@ -11,10 +11,10 @@ import UIKit
 class Builder {
     static let shared = Builder()
 
-    func getMenuPresenter() -> MenuPresenter {
+    func getMenuPresenter(view: MenuViewProtocol) -> MenuPresenter {
         let service = Service.shared
         let interactor = MenuInteractor(service: service)
         let router = MenuRouter()
-        return MenuPresenter(interactor: interactor, router: router)
+        return MenuPresenter(interactor: interactor, router: router, view: view)
     }
 }

@@ -8,6 +8,9 @@
 
 import UIKit
 
+protocol MenuViewProtocol: class {
+    func displayMenu(menu: [Food])
+}
 
 class MenuViewController: UIViewController {
     
@@ -17,15 +20,14 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        presenter = Builder.shared.getMenuPresenter()
-        presenter?.delegate = self
+        presenter = Builder.shared.getMenuPresenter(view: self)
         presenter?.onViewDidLoad()
     }
 }
 
-extension MenuViewController: MenuPresenterDelegate {
+extension MenuViewController: MenuViewProtocol {
     
-    func onMenuLoaded(menu: [Food]) {
+    func displayMenu(menu: [Food]) {
         //update table view
         print("gotten the menu, ready to be displayed")
     }
