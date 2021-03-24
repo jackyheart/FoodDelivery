@@ -30,6 +30,7 @@ extension MenuViewController: MenuViewProtocol {
     func displayMenu(menu: [Food]) {
         //update table view
         print("gotten the menu, ready to be displayed")
+        print(menu)
     }
 }
 

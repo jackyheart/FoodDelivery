@@ -6,6 +6,8 @@
 //  Copyright © 2021 Jacky Tjoa. All rights reserved.
 //
 
+import RxSwift
+
 protocol MenuDataSourceProtocol {
-    func fetchMenu() -> [Food]
+    func fetchMenu() -> Observable<[Food]>
 }

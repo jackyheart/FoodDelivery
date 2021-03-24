@@ -6,10 +6,12 @@
 //  Copyright © 2021 Jacky Tjoa. All rights reserved.
 //
 
+import RxSwift
+
 class RemoteDataSource: MenuDataSourceProtocol {
     
-    func fetchMenu() -> [Food] {
-        //fetch from api
-        return []
+    func fetchMenu() -> Observable<[Food]> {
+        //fetch from api        
+        return Observable.empty()
     }
 }

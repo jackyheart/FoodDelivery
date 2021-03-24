@@ -6,8 +6,10 @@
 //  Copyright © 2021 Jacky Tjoa. All rights reserved.
 //
 
+import RxSwift
+
 protocol MenuRepositoryProtocol {
-    func requestMenu() -> [Food]
+    func requestMenu() -> Observable<[Food]>
 }
 
 class Repository: MenuRepositoryProtocol {
@@ -18,7 +20,7 @@ class Repository: MenuRepositoryProtocol {
         self.dataSource = dataSource
     }
     
-    func requestMenu() -> [Food] {
+    func requestMenu() -> Observable<[Food]> {
         return dataSource.fetchMenu()
     }
 }

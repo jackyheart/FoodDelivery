@@ -7,25 +7,31 @@
 //
 
 import Foundation
+import RxSwift
 
 class LocalDataSource: MenuDataSourceProtocol {
     
-    func fetchMenu() -> [Food] {
-        guard let path = Bundle.main.path(forResource: "menu", ofType: "json") else {
-            print("path not found")
-            return []
-        }
+    func fetchMenu() -> Observable<[Food]> {
         
-        let url = URL(fileURLWithPath: path)
-        
-        do {
-            let data = try Data(contentsOf: url)
-            let menu = try JSONDecoder().decode([Food].self, from: data)
-            return menu
-        } catch {
-            print(error)
-        }
-        
-        return []
+        return Observable.create({ (observer) -> Disposable in
+            
+            guard let path = Bundle.main.path(forResource: "menu", ofType: "json") else {
+                let error = NSError(domain: "", code: -1, userInfo: ["reason": "path not found"])
+                observer.onError(error)
+                return Disposables.create { }
+            }
+            
+            let url = URL(fileURLWithPath: path)
+            
+            do {
+                let data = try Data(contentsOf: url)
+                let menu = try JSONDecoder().decode([Food].self, from: data)
+                observer.onNext(menu)
+            } catch {
+                print(error)
+            }
+
+            return Disposables.create { }
+        })
     }
 }

@@ -6,8 +6,10 @@
 //  Copyright © 2021 Jacky Tjoa. All rights reserved.
 //
 
+import RxSwift
+
 protocol MenuInteractorProtocol {
-    func getMenuList() -> [Food]
+    func getMenuList() -> Observable<[Food]>
 }
 
 class MenuInteractor: MenuInteractorProtocol {
@@ -18,7 +20,7 @@ class MenuInteractor: MenuInteractorProtocol {
         self.repository = repository
     }
 
-    func getMenuList() -> [Food] {
+    func getMenuList() -> Observable<[Food]> {
         return repository.requestMenu()
     }
 }
