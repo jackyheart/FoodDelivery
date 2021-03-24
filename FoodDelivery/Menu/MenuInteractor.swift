@@ -6,9 +6,7 @@
 //  Copyright © 2021 Jacky Tjoa. All rights reserved.
 //
 
-import Foundation
-
-protocol MenuInteractorProtocol: class {
+protocol MenuInteractorProtocol {
     func getMenuList() -> [Food]
 }
 

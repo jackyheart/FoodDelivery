@@ -6,8 +6,6 @@
 //  Copyright © 2021 Jacky Tjoa. All rights reserved.
 //
 
-import Foundation
-
 struct Food: Decodable {
     let name: String
     let type: String

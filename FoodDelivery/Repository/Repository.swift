@@ -6,8 +6,6 @@
 //  Copyright © 2021 Jacky Tjoa. All rights reserved.
 //
 
-import Foundation
-
 protocol MenuRepositoryProtocol {
     func requestMenu() -> [Food]
 }

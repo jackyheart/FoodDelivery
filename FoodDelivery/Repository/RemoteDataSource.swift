@@ -6,8 +6,6 @@
 //  Copyright © 2021 Jacky Tjoa. All rights reserved.
 //
 
-import Foundation
-
 class RemoteDataSource: MenuDataSourceProtocol {
     
     func fetchMenu() -> [Food] {
