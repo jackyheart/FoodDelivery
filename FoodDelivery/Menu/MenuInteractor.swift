@@ -14,13 +14,13 @@ protocol MenuInteractorProtocol: class {
 
 class MenuInteractor: MenuInteractorProtocol {
 
-    private let service: ServiceProtocol
+    private let repository: MenuRepositoryProtocol
 
-    init(service: ServiceProtocol) {
-        self.service = service
+    init(repository: MenuRepositoryProtocol) {
+        self.repository = repository
     }
 
     func getMenuList() -> [Food] {
-        return service.retrieveMenu()
+        return repository.requestMenu()
     }
 }
