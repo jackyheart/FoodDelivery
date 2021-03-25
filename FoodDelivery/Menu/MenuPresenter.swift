@@ -13,8 +13,7 @@ class MenuPresenter {
     private let interactor: MenuInteractorProtocol
     private let router: MenuRouterProtocol
     private weak var view: MenuViewProtocol?
-    private let disposeBag = DisposeBag()
-    
+
     init(interactor: MenuInteractorProtocol, router: MenuRouterProtocol, view: MenuViewProtocol) {
         self.interactor = interactor
         self.router = router
@@ -23,11 +22,7 @@ class MenuPresenter {
     
     func onViewDidLoad() {
         let menu = interactor.getMenuList()
-        menu.subscribe(onNext: { [weak self] (menuList) in
-            self?.view?.displayMenu(menu: menuList)
-        }, onError: { (error) in
-            print(error)
-        }).disposed(by: disposeBag)
+        view?.displayMenu(menu: menu)
     }
     
     func onNextPressed() {

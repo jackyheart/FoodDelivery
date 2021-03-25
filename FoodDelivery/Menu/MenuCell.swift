@@ -19,6 +19,9 @@ class MenuCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        priceBtn.layer.cornerRadius = 12
+        priceBtn.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,5 +29,13 @@ class MenuCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func setImage(imageName: String) {
+        let image = UIImage(named: imageName)
+        bannerImgView.image = image
+    }
+    
+    func setPriceBtnTitle(title: String) {
+        priceBtn.setTitle(title, for: .normal)
+    }
 }

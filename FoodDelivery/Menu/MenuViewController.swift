@@ -7,14 +7,18 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol MenuViewProtocol: class {
-    func displayMenu(menu: [Food])
+    func displayMenu(menu: Observable<[Food]>)
 }
 
 class MenuViewController: UIViewController {
     
     @IBOutlet weak var menuContainerView: UIView!
+    @IBOutlet weak var menuTableView: UITableView!
+    private let disposeBag = DisposeBag()
     
     private var presenter: MenuPresenter?
     
@@ -29,10 +33,26 @@ class MenuViewController: UIViewController {
 
 extension MenuViewController: MenuViewProtocol {
     
-    func displayMenu(menu: [Food]) {
-        //update table view
-        print("gotten the menu, ready to be displayed")
-        print(menu)
+    func displayMenu(menu: Observable<[Food]>) {
+        
+        print("binding menu to tableView")
+        
+        menu.bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, menu, cell in
+            
+            let menuCell = cell as? MenuCell
+            menuCell?.nameLbl.text = menu.name
+            menuCell?.descLbl.text = menu.description
+            menuCell?.sizeLbl.text = menu.size
+            menuCell?.setImage(imageName: menu.imageName)
+            menuCell?.setPriceBtnTitle(title: "SGD \(menu.price)")
+            
+        }.disposed(by: disposeBag)
     }
 }
 
+extension MenuViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 314.0
+    }
+}

@@ -9,10 +9,11 @@
 import ObjectMapper
 
 struct Food: Mappable {
+    var imageName: String = ""
     var name: String = ""
     var type: String = ""
     var description: String = ""
-    var imageName: String = ""
+    var size: String = ""
     var price: Double = 0.0
     
     init?(map: Map) {
@@ -20,10 +21,11 @@ struct Food: Mappable {
     }
     
     mutating func mapping(map: Map) {
+        imageName <- map["imageName"]
         name <- map["name"]
         type <- map["type"]
         description <- map["description"]
-        imageName <- map["imageName"]
+        size <- map["size"]
         price <- map["price"]
     }
 }
