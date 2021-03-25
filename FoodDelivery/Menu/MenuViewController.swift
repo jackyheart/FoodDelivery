@@ -23,10 +23,12 @@ enum MenuType: Int {
 class MenuViewController: UIViewController {
     
     @IBOutlet weak var menuContainerView: UIView!
+    @IBOutlet weak var menuTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuTableView: UITableView!
-    private let disposeBag = DisposeBag()
     
+    private var initialTopConstraint: CGFloat = 0.0
     private var presenter: MenuPresenter?
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +57,9 @@ class MenuViewController: UIViewController {
         menuTableView.showsVerticalScrollIndicator = false
         menuTableView.allowsSelection = false
         menuTableView.delegate = self
+        
+        //get initial top constraints
+        initialTopConstraint = menuTopConstraint.constant
     }
 
     private func configureButtons() {
@@ -105,5 +110,13 @@ extension MenuViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 320.0
+    }
+}
+
+extension MenuViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+        menuTopConstraint.constant = initialTopConstraint - (yOffset)
     }
 }
