@@ -14,6 +14,8 @@ protocol MenuViewProtocol: class {
 
 class MenuViewController: UIViewController {
     
+    @IBOutlet weak var menuContainerView: UIView!
+    
     private var presenter: MenuPresenter?
     
     override func viewDidLoad() {

@@ -11,6 +11,7 @@
 		892D9060260B57760091DD22 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D905F260B57760091DD22 /* DataSource.swift */; };
 		892D9062260B57F30091DD22 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D9061260B57F30091DD22 /* LocalDataSource.swift */; };
 		892D9064260B57FD0091DD22 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D9063260B57FD0091DD22 /* RemoteDataSource.swift */; };
+		897309C1260CA4BF00463ACF /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897309C0260CA4BF00463ACF /* MenuCell.swift */; };
 		897C71AC2609C6500049CA33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897C71AB2609C6500049CA33 /* AppDelegate.swift */; };
 		897C71B12609C6500049CA33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897C71AF2609C6500049CA33 /* Main.storyboard */; };
 		897C71B32609C6550049CA33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 897C71B22609C6550049CA33 /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		892D905F260B57760091DD22 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		892D9061260B57F30091DD22 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
 		892D9063260B57FD0091DD22 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
+		897309C0260CA4BF00463ACF /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		897C71A82609C6500049CA33 /* FoodDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		897C71AB2609C6500049CA33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		897C71B02609C6500049CA33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -146,7 +148,6 @@
 				892D905C260B56B50091DD22 /* Repository */,
 				897C71CD2609C68F0049CA33 /* Menu */,
 				897C71AB2609C6500049CA33 /* AppDelegate.swift */,
-				897C71DB2609F6FC0049CA33 /* MenuViewController.swift */,
 				897C71AF2609C6500049CA33 /* Main.storyboard */,
 				897C71B22609C6550049CA33 /* Assets.xcassets */,
 				897C71B42609C6550049CA33 /* LaunchScreen.storyboard */,
@@ -170,6 +171,8 @@
 				897C71CB2609C6840049CA33 /* MenuPresenter.swift */,
 				897C71CE2609C69E0049CA33 /* MenuInteractor.swift */,
 				897C71D32609C6E00049CA33 /* MenuRouter.swift */,
+				897C71DB2609F6FC0049CA33 /* MenuViewController.swift */,
+				897309C0260CA4BF00463ACF /* MenuCell.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 			files = (
 				897C71D72609C7210049CA33 /* Food.swift in Sources */,
 				897C71AC2609C6500049CA33 /* AppDelegate.swift in Sources */,
+				897309C1260CA4BF00463ACF /* MenuCell.swift in Sources */,
 				897C71CC2609C6840049CA33 /* MenuPresenter.swift in Sources */,
 				892D9064260B57FD0091DD22 /* RemoteDataSource.swift in Sources */,
 				897C71CF2609C69E0049CA33 /* MenuInteractor.swift in Sources */,
