@@ -14,6 +14,12 @@ protocol MenuViewProtocol: class {
     func displayMenu(menu: Observable<[Food]>)
 }
 
+enum MenuType: Int {
+    case pizza = 0
+    case sushi
+    case drinks
+}
+
 class MenuViewController: UIViewController {
     
     @IBOutlet weak var menuContainerView: UIView!
@@ -25,15 +31,55 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
-        //configure table view
-        menuTableView.separatorStyle = .none
-        menuTableView.showsVerticalScrollIndicator = false
-        menuTableView.delegate = self
+        
+        //configure UI
+        configureUI()
         
         //get presenter
         presenter = Builder.shared.getMenuPresenter(view: self)
         presenter?.onViewDidLoad()
+    }
+    
+    private func configureUI() {
+        configureViews()
+        configureButtons()
+    }
+    
+    private func configureViews() {
+        //configure container  view
+        menuContainerView.layer.cornerRadius = 15
+        menuContainerView.layer.masksToBounds = true
+        
+        //configure table view
+        menuTableView.separatorStyle = .none
+        menuTableView.showsVerticalScrollIndicator = false
+        menuTableView.delegate = self
+    }
+
+    private func configureButtons() {
+        //configure menu buttons
+        let menuTypes = ["Pizza", "Sushi", "Drinks"]
+        let btnMenuTypes = Builder.shared.generateMenuTypeButtonArray(titles: menuTypes, topLeft: CGPoint(x: 15.0, y: 5.0),
+                                                                      width: 75.0, spacing: 35.0, selector: #selector(menuTypeTapped))
+        for btn in btnMenuTypes {
+            menuContainerView.addSubview(btn)
+        }
+        
+        //configure filter buttons
+        let filters = ["Spicy", "Vegan"]
+        let btnFilters = Builder.shared.generateFiltersButtonArray(titles: filters, topLeft: CGPoint(x: 75.0, y: 48.0),
+                                                                   width: 60.0, spacing: 15.0, selector: #selector(filterBtnTapped))
+        for btn in btnFilters {
+            menuContainerView.addSubview(btn)
+        }
+    }
+    
+    @objc func menuTypeTapped(sender: UIButton) {
+        print("menu type tapped: \(sender.tag)")
+    }
+    
+    @objc func filterBtnTapped(sender: UIButton) {
+        print("filter tapped")
     }
 }
 
