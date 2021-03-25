@@ -26,6 +26,12 @@ class MenuViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
+        //configure table view
+        menuTableView.separatorStyle = .none
+        menuTableView.showsVerticalScrollIndicator = false
+        menuTableView.delegate = self
+        
+        //get presenter
         presenter = Builder.shared.getMenuPresenter(view: self)
         presenter?.onViewDidLoad()
     }
@@ -53,6 +59,10 @@ extension MenuViewController: MenuViewProtocol {
 extension MenuViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 314.0
+        return 320.0
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

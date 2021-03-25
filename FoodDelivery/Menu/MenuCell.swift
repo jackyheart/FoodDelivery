@@ -10,6 +10,7 @@ import UIKit
 
 class MenuCell: UITableViewCell {
     
+    @IBOutlet weak var cellContainerView: UIView!
     @IBOutlet weak var bannerImgView: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var descLbl: UILabel!
@@ -20,6 +21,14 @@ class MenuCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
+        //configure cell
+        cellContainerView.layer.cornerRadius = 10
+        cellContainerView.layer.masksToBounds = true
+        cellContainerView.layer.borderWidth = 1.0
+        cellContainerView.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        cellContainerView.backgroundColor = .clear
+        
+        //configure button
         priceBtn.layer.cornerRadius = 12
         priceBtn.layer.masksToBounds = true
     }
