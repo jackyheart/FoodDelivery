@@ -53,6 +53,7 @@ class MenuViewController: UIViewController {
         //configure table view
         menuTableView.separatorStyle = .none
         menuTableView.showsVerticalScrollIndicator = false
+        menuTableView.allowsSelection = false
         menuTableView.delegate = self
     }
 
@@ -87,8 +88,6 @@ extension MenuViewController: MenuViewProtocol {
     
     func displayMenu(menu: Observable<[Food]>) {
         
-        print("binding menu to tableView")
-        
         menu.bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, menu, cell in
             
             let menuCell = cell as? MenuCell
@@ -106,9 +105,5 @@ extension MenuViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 320.0
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
