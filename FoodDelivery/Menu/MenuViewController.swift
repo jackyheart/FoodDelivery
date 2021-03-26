@@ -164,6 +164,13 @@ extension MenuViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
-        menuTopConstraint.constant = initialTopConstraint - (yOffset)
+        
+        let temp = initialTopConstraint - (yOffset)
+        
+        if temp > -100.0 {
+            menuTopConstraint.constant = temp
+        }
+        
+        promotionScrollView.alpha = (menuTopConstraint.constant / initialTopConstraint)
     }
 }
