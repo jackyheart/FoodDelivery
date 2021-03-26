@@ -28,6 +28,8 @@ class MenuCell: UITableViewCell {
         cellContainerView.layer.borderColor = UIColor.groupTableViewBackground.cgColor
         cellContainerView.backgroundColor = .clear
         
+        bannerImgView.backgroundColor = .black
+        
         //configure button        
         priceBtn.layer.cornerRadius = priceBtn.frame.height * 0.5
         priceBtn.layer.masksToBounds = true
