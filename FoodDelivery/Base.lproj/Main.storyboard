@@ -21,6 +21,13 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOm-Tu-3as">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="197"/>
                             </scrollView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="izZ-6S-GXv">
+                                <rect key="frame" x="168" y="134" width="39" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="nk0-yg-3bA"/>
+                                    <constraint firstAttribute="width" constant="39" id="rd4-Er-MBY"/>
+                                </constraints>
+                            </pageControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JnI-Po-dhh">
                                 <rect key="frame" x="0.0" y="170" width="375" height="497"/>
                                 <subviews>
@@ -164,6 +171,7 @@
                             <constraint firstItem="FOI-f9-g17" firstAttribute="leading" secondItem="tcs-mc-ENJ" secondAttribute="trailing" constant="-15" id="EfH-4Z-S5U"/>
                             <constraint firstItem="JnI-Po-dhh" firstAttribute="top" secondItem="VOm-Tu-3as" secondAttribute="bottom" constant="-27" id="MRH-fN-Nw9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JnI-Po-dhh" secondAttribute="trailing" id="Sg7-cC-7fc"/>
+                            <constraint firstItem="izZ-6S-GXv" firstAttribute="top" secondItem="VOm-Tu-3as" secondAttribute="bottom" constant="-63" id="UWL-nZ-nJa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="VOm-Tu-3as" secondAttribute="top" constant="20" id="XS0-LX-5Ub"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JnI-Po-dhh" secondAttribute="bottom" id="ZsK-nc-s7B"/>
                             <constraint firstItem="JnI-Po-dhh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bnG-dF-T5G"/>
@@ -171,6 +179,7 @@
                             <constraint firstItem="tcs-mc-ENJ" firstAttribute="top" secondItem="FOI-f9-g17" secondAttribute="bottom" constant="-15" id="i2U-MH-gG9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tcs-mc-ENJ" secondAttribute="bottom" constant="35" id="nDF-ka-k6z"/>
                             <constraint firstItem="JnI-Po-dhh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="s17-cC-P2G"/>
+                            <constraint firstItem="izZ-6S-GXv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="xFD-qa-dpG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -180,6 +189,7 @@
                         <outlet property="menuContainerView" destination="JnI-Po-dhh" id="VfX-vQ-dBI"/>
                         <outlet property="menuTableView" destination="XGB-FR-WAw" id="W5i-wQ-nvM"/>
                         <outlet property="menuTopConstraint" destination="s17-cC-P2G" id="df9-s9-Kxi"/>
+                        <outlet property="promotionPageControl" destination="izZ-6S-GXv" id="2at-mm-Doj"/>
                         <outlet property="promotionScrollView" destination="VOm-Tu-3as" id="agr-3Q-vT2"/>
                     </connections>
                 </viewController>

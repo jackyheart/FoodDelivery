@@ -23,6 +23,7 @@ enum MenuType: Int {
 class MenuViewController: UIViewController {
     
     @IBOutlet weak var promotionScrollView: UIScrollView!
+    @IBOutlet weak var promotionPageControl: UIPageControl!
     @IBOutlet weak var menuContainerView: UIView!
     @IBOutlet weak var menuTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuTableView: UITableView!
@@ -77,7 +78,11 @@ class MenuViewController: UIViewController {
             promotionScrollView.contentSize = CGSize(width: CGFloat(numBanners) * width, height: height)
             promotionScrollView.addSubview(imgView)
             promotionScrollView.isPagingEnabled = true
+            promotionScrollView.delegate = self
         }
+        
+        //page control
+        promotionPageControl.numberOfPages = numBanners
         
         //configure container view
         menuContainerView.layer.cornerRadius = 15
@@ -96,7 +101,7 @@ class MenuViewController: UIViewController {
     private func configureButtons() {
         //configure menu buttons
         let menuTypes = ["Pizza", "Sushi", "Drinks"]
-        self.menuTypeBtns = Builder.shared.generateMenuTypeButtonArray(titles: menuTypes,
+        menuTypeBtns = Builder.shared.generateMenuTypeButtonArray(titles: menuTypes,
                                                                       topLeft: CGPoint(x: 15.0, y: 15.0),
                                                                       width: 75.0, spacing: 35.0,
                                                                       target: self, selector: #selector(menuTypeTapped(sender:)))
@@ -122,23 +127,23 @@ class MenuViewController: UIViewController {
         }
         
         //configure cart button
-        self.cartBtn.layer.cornerRadius = self.cartBtn.bounds.width * 0.5
-        self.cartBtn.layer.masksToBounds = true
-        self.cartBtn.layer.borderColor = UIColor.groupTableViewBackground.cgColor
-        self.cartBtn.layer.borderWidth = 1.0
-        self.cartBtn.alpha = 0.0
-        self.cartBtn.isHidden = true
+        cartBtn.layer.cornerRadius = self.cartBtn.bounds.width * 0.5
+        cartBtn.layer.masksToBounds = true
+        cartBtn.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        cartBtn.layer.borderWidth = 1.0
+        cartBtn.alpha = 0.0
+        cartBtn.isHidden = true
     }
     
     private func configureLabels() {
-        self.counterLbl.backgroundColor = UIColor(displayP3Red: 31.0/255.0, green: 177.0/255.0,
+        counterLbl.backgroundColor = UIColor(displayP3Red: 31.0/255.0, green: 177.0/255.0,
                                                   blue: 65.0/255.0, alpha: 1.0)
-        self.counterLbl.layer.cornerRadius = self.counterLbl.bounds.width * 0.5
-        self.counterLbl.layer.masksToBounds = true
-        self.counterLbl.isHidden = true
+        counterLbl.layer.cornerRadius = self.counterLbl.bounds.width * 0.5
+        counterLbl.layer.masksToBounds = true
+        counterLbl.isHidden = true
     }
     
-    @objc func menuTypeTapped(sender: UIButton) {
+    @objc private func menuTypeTapped(sender: UIButton) {
         for btn in self.menuTypeBtns {
             var color: UIColor = .lightGray
             if btn.tag == sender.tag {
@@ -148,7 +153,7 @@ class MenuViewController: UIViewController {
         }
     }
     
-    @objc func filterBtnTapped(sender: UIButton) {
+    @objc private func filterBtnTapped(sender: UIButton) {
         print("filter tapped")
     }
     
@@ -187,6 +192,12 @@ extension MenuViewController: UITableViewDelegate {
 extension MenuViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if scrollView == promotionScrollView {
+            //ignore if this is the promotion scroll view
+            return
+        }
+        
         let yOffset = scrollView.contentOffset.y
         
         let temp = initialTopConstraint - (yOffset)
@@ -204,6 +215,13 @@ extension MenuViewController: UIScrollViewDelegate {
             UIView.animate(withDuration: 0.5) {
                 self.cartBtn.alpha = 1.0
             }
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == promotionScrollView {
+            let page = floor(scrollView.contentOffset.x / scrollView.bounds.width)
+            self.promotionPageControl.currentPage = Int(page)
         }
     }
 }
