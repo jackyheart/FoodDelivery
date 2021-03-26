@@ -28,6 +28,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var menuTableView: UITableView!
     
     private var initialTopConstraint: CGFloat = 0.0
+    private var menuTypeBtns: [UIButton] = []
     private var presenter: MenuPresenter?
     private let disposeBag = DisposeBag()
     
@@ -90,11 +91,19 @@ class MenuViewController: UIViewController {
     private func configureButtons() {
         //configure menu buttons
         let menuTypes = ["Pizza", "Sushi", "Drinks"]
-        let btnMenuTypes = Builder.shared.generateMenuTypeButtonArray(titles: menuTypes,
+        self.menuTypeBtns = Builder.shared.generateMenuTypeButtonArray(titles: menuTypes,
                                                                       topLeft: CGPoint(x: 15.0, y: 15.0),
                                                                       width: 75.0, spacing: 35.0,
                                                                       target: self, selector: #selector(menuTypeTapped(sender:)))
-        for btn in btnMenuTypes {
+        for i in 0 ..< self.menuTypeBtns.count {
+            let btn = self.menuTypeBtns[i]
+            
+            var color: UIColor = .lightGray
+            if i == 0 {
+                color = .black
+            }
+            btn.setTitleColor(color, for: .normal)
+            
             menuContainerView.addSubview(btn)
         }
         
@@ -109,7 +118,13 @@ class MenuViewController: UIViewController {
     }
     
     @objc func menuTypeTapped(sender: UIButton) {
-        print("menu type tapped: \(sender.tag)")
+        for btn in self.menuTypeBtns {
+            var color: UIColor = .lightGray
+            if btn.tag == sender.tag {
+                color = .black
+            }
+            btn.setTitleColor(color, for: .normal)
+        }
     }
     
     @objc func filterBtnTapped(sender: UIButton) {
