@@ -28,4 +28,9 @@ class MenuPresenter {
     func onNextPressed() {
         router.navigateToOrderSummary()
     }
+    
+    func onMenuAdded(food: Food) {
+        //add order to database
+        Database.shared.addOrder(food: food)
+    }
 }

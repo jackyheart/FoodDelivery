@@ -199,14 +199,19 @@ class MenuViewController: UIViewController {
     
     private func showMenuByType(menu: Observable<[Food]>, type: MenuType) {
         menu.map({ $0.filter { $0.type == type.rawValue }})
-            .bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, menu, cell in
+            .bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, food, cell in
 
                 let menuCell = cell as? MenuCell
-                menuCell?.nameLbl.text = menu.name
-                menuCell?.descLbl.text = menu.description
-                menuCell?.sizeLbl.text = menu.size
-                menuCell?.setImage(imageName: menu.imageName)
-                menuCell?.setPriceBtnTitle(title: "SGD \(menu.price)")
+                menuCell?.nameLbl.text = food.name
+                menuCell?.descLbl.text = food.description
+                menuCell?.sizeLbl.text = food.size
+                menuCell?.setImage(imageName: food.imageName)
+                menuCell?.setPriceBtnTitle(title: "SGD \(food.price)")
+                
+                menuCell?.priceBtn.rx.tap.subscribe(onNext: {
+                    //add menu item
+                    self.presenter?.onMenuAdded(food: food)
+                }).disposed(by: self.disposeBag)
 
             }.disposed(by: disposeBag)
     }
