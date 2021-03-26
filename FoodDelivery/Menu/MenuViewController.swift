@@ -14,8 +14,8 @@ protocol MenuViewProtocol: class {
     func displayMenu(menu: Observable<[Food]>)
 }
 
-enum MenuType: Int {
-    case pizza = 0
+enum MenuType: String {
+    case pizza
     case sushi
     case drinks
 }
@@ -34,6 +34,7 @@ class MenuViewController: UIViewController {
     private var menuTypeBtns: [UIButton] = []
     private var presenter: MenuPresenter?
     private let disposeBag = DisposeBag()
+    private let menuTypes: [MenuType] = [.pizza, .sushi, .drinks]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,11 +101,10 @@ class MenuViewController: UIViewController {
 
     private func configureButtons() {
         //configure menu buttons
-        let menuTypes = ["Pizza", "Sushi", "Drinks"]
-        menuTypeBtns = Builder.shared.generateMenuTypeButtonArray(titles: menuTypes,
-                                                                      topLeft: CGPoint(x: 15.0, y: 15.0),
-                                                                      width: 75.0, spacing: 35.0,
-                                                                      target: self, selector: #selector(menuTypeTapped(sender:)))
+        menuTypeBtns = Builder.shared.generateMenuTypeButtonArray(titles: menuTypes.map({ $0.rawValue.capitalized }),
+                                                                  topLeft: CGPoint(x: 15.0, y: 15.0),
+                                                                  width: 75.0, spacing: 35.0,
+                                                                  target: self, selector: #selector(menuTypeTapped(sender:)))
         for i in 0 ..< self.menuTypeBtns.count {
             let btn = self.menuTypeBtns[i]
             
@@ -168,8 +168,8 @@ class MenuViewController: UIViewController {
 extension MenuViewController: MenuViewProtocol {
     
     func displayMenu(menu: Observable<[Food]>) {
-        
-        menu.bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, menu, cell in
+        menu.map({ $0.filter { $0.type == MenuType.pizza.rawValue }})
+            .bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, menu, cell in
             
             let menuCell = cell as? MenuCell
             menuCell?.nameLbl.text = menu.name

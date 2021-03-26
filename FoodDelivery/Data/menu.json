@@ -4,7 +4,7 @@
     "type": "pizza",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "size": "100 grams, 30 cm",
-    "price": "25"
+    "price": 25.0
 },
 {
     "imageName": "pepperoni",
@@ -12,7 +12,7 @@
     "type": "pizza",
     "description": "",
     "size": "150 grams, 35 cm",
-    "price": "35"
+    "price": 35.0
 },
 {
     "imageName": "pepperoni",
@@ -20,29 +20,74 @@
     "type": "pizza",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "size": "100 grams, 30 cm",
-    "price": "25"
+    "price": 25.0
 },
 {
     "imageName": "pepperoni",
     "name": "Margherita2",
     "type": "pizza",
-    "description": "",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "size": "150 grams, 35 cm",
-    "price": "35"
+    "price": 35.0
 },
+
+
 {
     "imageName": "pepperoni",
     "name": "Sushi#1",
     "type": "sushi",
-    "description": "",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "size": "20 cm x 20 cm",
-    "price": "40"
+    "price": 40.0
 },
 {
     "imageName": "pepperoni",
     "name": "Sushi#2",
     "type": "sushi",
-    "description": "",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "size": "25 cm x 25 cm",
-    "price": "50"
-}]
+    "price": 50.0
+},
+{
+    "imageName": "pepperoni",
+    "name": "Sushi#3",
+    "type": "sushi",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "size": "22.5 cm x 22.5 cm",
+    "price": 45.0
+},
+
+
+{
+    "imageName": "pepperoni",
+    "name": "Water",
+    "type": "drinks",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "size": "200 ml",
+    "price": 1.0
+},
+{
+    "imageName": "pepperoni",
+    "name": "Coca Cola",
+    "type": "drinks",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "size": "320 ml",
+    "price": 2.5
+},
+{
+    "imageName": "pepperoni",
+    "name": "Sprite",
+    "type": "drinks",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "size": "320 ml",
+    "price": 2.5
+},
+{
+    "imageName": "pepperoni",
+    "name": "Fanta",
+    "type": "drinks",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "size": "320 ml",
+    "price": 2.5
+}
+]
