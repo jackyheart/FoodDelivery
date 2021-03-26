@@ -62,11 +62,13 @@ class MenuViewController: UIViewController {
             let imageName = "promotion\(i+1)"
             let image = UIImage(named: imageName)
             
-            let width = promotionScrollView.bounds.width
+            let width = self.view.bounds.width
             let height = promotionScrollView.bounds.height
+            
             let rect = CGRect(x: CGFloat(i) * width, y: 0, width: width, height: height)
             let imgView = UIImageView(frame: rect)
             imgView.contentMode = .scaleAspectFill
+            imgView.clipsToBounds = true
             imgView.image = image
             
             promotionScrollView.contentSize = CGSize(width: CGFloat(numBanners) * width, height: height)
