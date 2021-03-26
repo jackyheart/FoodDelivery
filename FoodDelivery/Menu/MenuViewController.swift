@@ -14,10 +14,21 @@ protocol MenuViewProtocol: class {
     func displayMenu(menu: Observable<[Food]>)
 }
 
-enum MenuType: String {
+enum MenuType: String, CaseIterable {
     case pizza
     case sushi
     case drinks
+    
+    var intVal: Int {
+        switch self {
+        case .pizza:
+            return 0
+        case .sushi:
+            return 1
+        case .drinks:
+            return 2
+        }
+    }
 }
 
 class MenuViewController: UIViewController {
@@ -34,7 +45,8 @@ class MenuViewController: UIViewController {
     private var menuTypeBtns: [UIButton] = []
     private var presenter: MenuPresenter?
     private let disposeBag = DisposeBag()
-    private let menuTypes: [MenuType] = [.pizza, .sushi, .drinks]
+    private var currentMenuType: MenuType = .pizza
+    private let dataSource = BehaviorRelay(value: [Food]())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +56,13 @@ class MenuViewController: UIViewController {
         configureUI()
         
         //add gesture
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeDected))
-        swipeGesture.direction = .left
-        menuTableView.addGestureRecognizer(swipeGesture)
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeDected))
+        leftSwipe.direction = .left
+        menuTableView.addGestureRecognizer(leftSwipe)
+        
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeDected))
+        rightSwipe.direction = .right
+        menuTableView.addGestureRecognizer(rightSwipe)
         
         //get presenter
         presenter = Builder.shared.getMenuPresenter(view: self)
@@ -101,7 +117,7 @@ class MenuViewController: UIViewController {
 
     private func configureButtons() {
         //configure menu buttons
-        menuTypeBtns = Builder.shared.generateMenuTypeButtonArray(titles: menuTypes.map({ $0.rawValue.capitalized }),
+        menuTypeBtns = Builder.shared.generateMenuTypeButtonArray(titles: MenuType.allCases.map({ $0.rawValue.capitalized }),
                                                                   topLeft: CGPoint(x: 15.0, y: 15.0),
                                                                   width: 75.0, spacing: 35.0,
                                                                   target: self, selector: #selector(menuTypeTapped(sender:)))
@@ -158,27 +174,49 @@ class MenuViewController: UIViewController {
     }
     
     @objc private func swipeDected(gesture: UISwipeGestureRecognizer) {
-        print("swipe dected")
+        
+        //TODO: send event to presenter
+        
+        /*
+        if gesture.direction == .left {
+            
+            let idx = (currentMenuType.intVal + 1) % MenuType.allCases.count
+            currentMenuType = MenuType.allCases[idx]
+            
+        } else if gesture.direction == .right {
+            
+            var idx = (currentMenuType.intVal - 1) % MenuType.allCases.count
+            if idx < 0 {
+                idx = MenuType.allCases.count - 1
+            }
+            currentMenuType = MenuType.allCases[idx]
+        }
+        */
     }
     
     @IBAction func cartTapped(_ sender: Any) {
+    }
+    
+    private func showMenuByType(menu: Observable<[Food]>, type: MenuType) {
+        menu.map({ $0.filter { $0.type == type.rawValue }})
+            .bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, menu, cell in
+
+                let menuCell = cell as? MenuCell
+                menuCell?.nameLbl.text = menu.name
+                menuCell?.descLbl.text = menu.description
+                menuCell?.sizeLbl.text = menu.size
+                menuCell?.setImage(imageName: menu.imageName)
+                menuCell?.setPriceBtnTitle(title: "SGD \(menu.price)")
+
+            }.disposed(by: disposeBag)
     }
 }
 
 extension MenuViewController: MenuViewProtocol {
     
     func displayMenu(menu: Observable<[Food]>) {
-        menu.map({ $0.filter { $0.type == MenuType.pizza.rawValue }})
-            .bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, menu, cell in
-            
-            let menuCell = cell as? MenuCell
-            menuCell?.nameLbl.text = menu.name
-            menuCell?.descLbl.text = menu.description
-            menuCell?.sizeLbl.text = menu.size
-            menuCell?.setImage(imageName: menu.imageName)
-            menuCell?.setPriceBtnTitle(title: "SGD \(menu.price)")
-            
-        }.disposed(by: disposeBag)
+        //set initial display with type 'pizza'
+        showMenuByType(menu: menu, type: currentMenuType)
     }
 }
 
