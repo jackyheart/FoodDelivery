@@ -48,14 +48,17 @@ class Builder {
             let title = titles[i]
             let rect = CGRect(x: topLeft.x + (CGFloat(i) * (width + spacing)),
                               y: topLeft.y, width: width, height: height)
+            
+            let grayColor = UIColor(displayP3Red: 192.0/255.0, green: 192.0/255.0,
+                                    blue: 192.0/255.0, alpha: 1.0)
             let btn = UIButton(frame: rect)
             btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12.0)
-            btn.setTitleColor(UIColor.groupTableViewBackground, for: .normal)
+            btn.setTitleColor(grayColor, for: .normal)
             btn.setTitle(title, for: .normal)
             btn.addTarget(target, action: selector, for: .touchUpInside)
             btn.layer.cornerRadius = height * 0.5
             btn.layer.masksToBounds = true
-            btn.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+            btn.layer.borderColor = grayColor.cgColor
             btn.layer.borderWidth = 1.0
             btn.tag = i
             btnArr.append(btn)
