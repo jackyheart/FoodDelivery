@@ -131,7 +131,8 @@ class MenuViewController: UIViewController {
     }
     
     private func configureLabels() {
-        self.counterLbl.backgroundColor = .green
+        self.counterLbl.backgroundColor = UIColor(displayP3Red: 31.0/255.0, green: 177.0/255.0,
+                                                  blue: 65.0/255.0, alpha: 1.0)
         self.counterLbl.layer.cornerRadius = self.counterLbl.bounds.width * 0.5
         self.counterLbl.layer.masksToBounds = true
         self.counterLbl.isHidden = true
