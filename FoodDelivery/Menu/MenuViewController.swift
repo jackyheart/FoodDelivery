@@ -26,6 +26,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var menuContainerView: UIView!
     @IBOutlet weak var menuTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuTableView: UITableView!
+    @IBOutlet weak var cartBtn: UIButton!
     
     private var initialTopConstraint: CGFloat = 0.0
     private var menuTypeBtns: [UIButton] = []
@@ -117,6 +118,14 @@ class MenuViewController: UIViewController {
         for btn in btnFilters {
             menuContainerView.addSubview(btn)
         }
+        
+        //configure cart button
+        self.cartBtn.layer.cornerRadius = self.cartBtn.bounds.width * 0.5
+        self.cartBtn.layer.masksToBounds = true
+        self.cartBtn.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        self.cartBtn.layer.borderWidth = 1.0
+        self.cartBtn.alpha = 0.0
+        self.cartBtn.isHidden = true
     }
     
     @objc func menuTypeTapped(sender: UIButton) {
@@ -135,6 +144,9 @@ class MenuViewController: UIViewController {
     
     @objc private func swipeDected(gesture: UISwipeGestureRecognizer) {
         print("swipe dected")
+    }
+    
+    @IBAction func cartTapped(_ sender: Any) {
     }
 }
 
@@ -174,5 +186,12 @@ extension MenuViewController: UIScrollViewDelegate {
         }
         
         promotionScrollView.alpha = (menuTopConstraint.constant / initialTopConstraint)
+        
+        if self.cartBtn.isHidden {
+            self.cartBtn.isHidden = false
+            UIView.animate(withDuration: 0.5) {
+                self.cartBtn.alpha = 1.0
+            }
+        }
     }
 }
