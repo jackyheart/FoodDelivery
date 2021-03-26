@@ -191,8 +191,10 @@ extension MenuViewController: UIScrollViewDelegate {
         
         let temp = initialTopConstraint - (yOffset)
         
-        if temp > -100.0 {
+        if temp > 0.0 {
             menuTopConstraint.constant = temp
+        } else {
+            menuTopConstraint.constant = 0.0
         }
         
         promotionScrollView.alpha = (menuTopConstraint.constant / initialTopConstraint)
