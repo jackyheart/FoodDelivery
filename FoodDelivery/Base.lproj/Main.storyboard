@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOm-Tu-3as">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="147"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="197"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JnI-Po-dhh">
-                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <rect key="frame" x="0.0" y="170" width="375" height="497"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILTERS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHt-pI-IAw">
                                         <rect key="frame" x="15" y="51" width="48" height="15"/>
@@ -35,7 +35,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XGB-FR-WAw">
-                                        <rect key="frame" x="0.0" y="85" width="375" height="462"/>
+                                        <rect key="frame" x="0.0" y="85" width="375" height="412"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuCell" rowHeight="320" id="YJL-hl-TiE" customClass="MenuCell" customModule="FoodDelivery" customModuleProvider="target">
@@ -143,7 +143,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JnI-Po-dhh" secondAttribute="bottom" id="ZsK-nc-s7B"/>
                             <constraint firstItem="JnI-Po-dhh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bnG-dF-T5G"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VOm-Tu-3as" secondAttribute="trailing" id="fgg-V1-fUu"/>
-                            <constraint firstItem="JnI-Po-dhh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="s17-cC-P2G"/>
+                            <constraint firstItem="JnI-Po-dhh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="s17-cC-P2G"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -151,6 +151,7 @@
                         <outlet property="menuContainerView" destination="JnI-Po-dhh" id="VfX-vQ-dBI"/>
                         <outlet property="menuTableView" destination="XGB-FR-WAw" id="W5i-wQ-nvM"/>
                         <outlet property="menuTopConstraint" destination="s17-cC-P2G" id="df9-s9-Kxi"/>
+                        <outlet property="promotionScrollView" destination="VOm-Tu-3as" id="agr-3Q-vT2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

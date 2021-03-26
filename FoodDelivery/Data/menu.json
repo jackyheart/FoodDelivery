@@ -16,6 +16,22 @@
 },
 {
     "imageName": "pepperoni",
+    "name": "Pepperoni2",
+    "type": "pizza",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "size": "100 grams, 30 cm",
+    "price": "25"
+},
+{
+    "imageName": "pepperoni",
+    "name": "Margherita2",
+    "type": "pizza",
+    "description": "",
+    "size": "150 grams, 35 cm",
+    "price": "35"
+},
+{
+    "imageName": "pepperoni",
     "name": "Sushi#1",
     "type": "sushi",
     "description": "",

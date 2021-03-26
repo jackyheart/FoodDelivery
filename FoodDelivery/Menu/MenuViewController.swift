@@ -22,6 +22,7 @@ enum MenuType: Int {
 
 class MenuViewController: UIViewController {
     
+    @IBOutlet weak var promotionScrollView: UIScrollView!
     @IBOutlet weak var menuContainerView: UIView!
     @IBOutlet weak var menuTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuTableView: UITableView!
@@ -40,6 +41,10 @@ class MenuViewController: UIViewController {
         //get presenter
         presenter = Builder.shared.getMenuPresenter(view: self)
         presenter?.onViewDidLoad()
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeDected))
+        swipeGesture.direction = .left
+        menuTableView.addGestureRecognizer(swipeGesture)
     }
     
     private func configureUI() {
@@ -48,7 +53,26 @@ class MenuViewController: UIViewController {
     }
     
     private func configureViews() {
-        //configure container  view
+        
+        //add promotion banners
+        let numBanners = 3
+        for i in 0 ..< numBanners {
+            let imageName = "promotion\(i+1)"
+            let image = UIImage(named: imageName)
+            
+            let width = promotionScrollView.bounds.width
+            let height = promotionScrollView.bounds.height
+            let rect = CGRect(x: CGFloat(i) * width, y: 0, width: width, height: height)
+            let imgView = UIImageView(frame: rect)
+            imgView.contentMode = .scaleAspectFill
+            imgView.image = image
+            
+            promotionScrollView.contentSize = CGSize(width: CGFloat(numBanners) * width, height: height)
+            promotionScrollView.addSubview(imgView)
+            promotionScrollView.isPagingEnabled = true
+        }
+        
+        //configure container view
         menuContainerView.layer.cornerRadius = 15
         menuContainerView.layer.masksToBounds = true
         
@@ -86,6 +110,10 @@ class MenuViewController: UIViewController {
     
     @objc func filterBtnTapped(sender: UIButton) {
         print("filter tapped")
+    }
+    
+    @objc private func swipeDected(gesture: UISwipeGestureRecognizer) {
+        print("swipe dected")
     }
 }
 
