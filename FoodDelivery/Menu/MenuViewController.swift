@@ -27,6 +27,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak var menuTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var menuTableView: UITableView!
     @IBOutlet weak var cartBtn: UIButton!
+    @IBOutlet weak var counterLbl: UILabel!
     
     private var initialTopConstraint: CGFloat = 0.0
     private var menuTypeBtns: [UIButton] = []
@@ -53,6 +54,7 @@ class MenuViewController: UIViewController {
     private func configureUI() {
         configureViews()
         configureButtons()
+        configureLabels()
     }
     
     private func configureViews() {
@@ -126,6 +128,13 @@ class MenuViewController: UIViewController {
         self.cartBtn.layer.borderWidth = 1.0
         self.cartBtn.alpha = 0.0
         self.cartBtn.isHidden = true
+    }
+    
+    private func configureLabels() {
+        self.counterLbl.backgroundColor = .green
+        self.counterLbl.layer.cornerRadius = self.counterLbl.bounds.width * 0.5
+        self.counterLbl.layer.masksToBounds = true
+        self.counterLbl.isHidden = true
     }
     
     @objc func menuTypeTapped(sender: UIButton) {

@@ -145,17 +145,30 @@
                                     <action selector="cartTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="U2x-ct-Hea"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOI-f9-g17">
+                                <rect key="frame" x="345" y="587" width="16" height="16"/>
+                                <color key="backgroundColor" red="0.0" green="0.97680455450000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="dcw-IN-zPg"/>
+                                    <constraint firstAttribute="height" constant="16" id="mSG-22-wWD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="VOm-Tu-3as" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7tQ-lF-oRb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tcs-mc-ENJ" secondAttribute="trailing" constant="15" id="9qZ-dt-bXw"/>
+                            <constraint firstItem="FOI-f9-g17" firstAttribute="leading" secondItem="tcs-mc-ENJ" secondAttribute="trailing" constant="-15" id="EfH-4Z-S5U"/>
                             <constraint firstItem="JnI-Po-dhh" firstAttribute="top" secondItem="VOm-Tu-3as" secondAttribute="bottom" constant="-27" id="MRH-fN-Nw9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JnI-Po-dhh" secondAttribute="trailing" id="Sg7-cC-7fc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="VOm-Tu-3as" secondAttribute="top" constant="20" id="XS0-LX-5Ub"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JnI-Po-dhh" secondAttribute="bottom" id="ZsK-nc-s7B"/>
                             <constraint firstItem="JnI-Po-dhh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bnG-dF-T5G"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VOm-Tu-3as" secondAttribute="trailing" id="fgg-V1-fUu"/>
+                            <constraint firstItem="tcs-mc-ENJ" firstAttribute="top" secondItem="FOI-f9-g17" secondAttribute="bottom" constant="-15" id="i2U-MH-gG9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tcs-mc-ENJ" secondAttribute="bottom" constant="35" id="nDF-ka-k6z"/>
                             <constraint firstItem="JnI-Po-dhh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="150" id="s17-cC-P2G"/>
                         </constraints>
@@ -163,6 +176,7 @@
                     </view>
                     <connections>
                         <outlet property="cartBtn" destination="tcs-mc-ENJ" id="T3H-dQ-zP5"/>
+                        <outlet property="counterLbl" destination="FOI-f9-g17" id="y12-sM-hj5"/>
                         <outlet property="menuContainerView" destination="JnI-Po-dhh" id="VfX-vQ-dBI"/>
                         <outlet property="menuTableView" destination="XGB-FR-WAw" id="W5i-wQ-nvM"/>
                         <outlet property="menuTopConstraint" destination="s17-cC-P2G" id="df9-s9-Kxi"/>
