@@ -38,13 +38,14 @@ class MenuViewController: UIViewController {
         //configure UI
         configureUI()
         
-        //get presenter
-        presenter = Builder.shared.getMenuPresenter(view: self)
-        presenter?.onViewDidLoad()
-        
+        //add gesture
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeDected))
         swipeGesture.direction = .left
         menuTableView.addGestureRecognizer(swipeGesture)
+        
+        //get presenter
+        presenter = Builder.shared.getMenuPresenter(view: self)
+        presenter?.onViewDidLoad()
     }
     
     private func configureUI() {
@@ -89,8 +90,10 @@ class MenuViewController: UIViewController {
     private func configureButtons() {
         //configure menu buttons
         let menuTypes = ["Pizza", "Sushi", "Drinks"]
-        let btnMenuTypes = Builder.shared.generateMenuTypeButtonArray(titles: menuTypes, topLeft: CGPoint(x: 15.0, y: 5.0),
-                                                                      width: 75.0, spacing: 35.0, selector: #selector(menuTypeTapped))
+        let btnMenuTypes = Builder.shared.generateMenuTypeButtonArray(titles: menuTypes,
+                                                                      topLeft: CGPoint(x: 15.0, y: 15.0),
+                                                                      width: 75.0, spacing: 35.0,
+                                                                      target: self, selector: #selector(menuTypeTapped(sender:)))
         for btn in btnMenuTypes {
             menuContainerView.addSubview(btn)
         }
@@ -98,7 +101,8 @@ class MenuViewController: UIViewController {
         //configure filter buttons
         let filters = ["Spicy", "Vegan"]
         let btnFilters = Builder.shared.generateFiltersButtonArray(titles: filters, topLeft: CGPoint(x: 75.0, y: 48.0),
-                                                                   width: 60.0, spacing: 15.0, selector: #selector(filterBtnTapped))
+                                                                   width: 60.0, spacing: 15.0,
+                                                                   target: self, selector: #selector(filterBtnTapped(sender:)))
         for btn in btnFilters {
             menuContainerView.addSubview(btn)
         }

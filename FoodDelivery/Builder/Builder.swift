@@ -20,7 +20,8 @@ class Builder {
     }
     
     func generateMenuTypeButtonArray(titles: [String], topLeft: CGPoint,
-                                     width: CGFloat, spacing: CGFloat, selector: Selector) -> [UIButton] {
+                                     width: CGFloat, spacing: CGFloat,
+                                     target: Any?, selector: Selector) -> [UIButton] {
         var btnArr: [UIButton] = []
         for i in 0 ..< titles.count {
             let title = titles[i]
@@ -31,7 +32,7 @@ class Builder {
             btn.setTitleColor(.black, for: .normal)
             btn.setTitle(title, for: .normal)
             btn.contentHorizontalAlignment = .left
-            btn.addTarget(self, action: selector, for: .touchUpInside)
+            btn.addTarget(target, action: selector, for: .touchUpInside)
             btn.tag = i
             btnArr.append(btn)
         }
@@ -39,7 +40,8 @@ class Builder {
     }
     
     func generateFiltersButtonArray(titles: [String], topLeft: CGPoint,
-                                    width: CGFloat, spacing: CGFloat, selector: Selector) -> [UIButton] {
+                                    width: CGFloat, spacing: CGFloat,
+                                    target: Any?, selector: Selector) -> [UIButton] {
         var btnArr: [UIButton] = []
         let height: CGFloat = 20.0
         for i in 0 ..< titles.count {
@@ -50,7 +52,7 @@ class Builder {
             btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12.0)
             btn.setTitleColor(UIColor.groupTableViewBackground, for: .normal)
             btn.setTitle(title, for: .normal)
-            btn.addTarget(self, action: selector, for: .touchUpInside)
+            btn.addTarget(target, action: selector, for: .touchUpInside)
             btn.layer.cornerRadius = height * 0.5
             btn.layer.masksToBounds = true
             btn.layer.borderColor = UIColor.groupTableViewBackground.cgColor
