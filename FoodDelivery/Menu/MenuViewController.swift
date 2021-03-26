@@ -100,7 +100,7 @@ class MenuViewController: UIViewController {
         
         //configure filter buttons
         let filters = ["Spicy", "Vegan"]
-        let btnFilters = Builder.shared.generateFiltersButtonArray(titles: filters, topLeft: CGPoint(x: 75.0, y: 48.0),
+        let btnFilters = Builder.shared.generateFiltersButtonArray(titles: filters, topLeft: CGPoint(x: 75.0, y: 53.0),
                                                                    width: 60.0, spacing: 15.0,
                                                                    target: self, selector: #selector(filterBtnTapped(sender:)))
         for btn in btnFilters {
