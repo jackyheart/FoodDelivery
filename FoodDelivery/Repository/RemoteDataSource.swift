@@ -15,6 +15,10 @@ class RemoteDataSource: DataSourceProtocol {
         return Observable.empty()
     }
     
+    func addOrder(food: Food) {
+        Database.shared.addOrder(food: food)
+    }
+    
     func fetchOrders() -> Observable<[Order]> {
         
         return Observable.create { (observer) -> Disposable in

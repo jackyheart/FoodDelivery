@@ -10,6 +10,7 @@ import RxSwift
 
 protocol MenuInteractorProtocol {
     func getMenuList() -> Observable<[Food]>
+    func addOrder(food: Food)
 }
 
 class MenuInteractor: MenuInteractorProtocol {
@@ -22,5 +23,9 @@ class MenuInteractor: MenuInteractorProtocol {
 
     func getMenuList() -> Observable<[Food]> {
         return repository.requestMenu()
+    }
+    
+    func addOrder(food: Food) {
+        repository.addOrder(food: food)
     }
 }

@@ -30,7 +30,6 @@ class MenuPresenter {
     }
     
     func onAddMenu(food: Food) {
-        //add order to database
-        Database.shared.addOrder(food: food)
+        interactor.addOrder(food: food)
     }
 }

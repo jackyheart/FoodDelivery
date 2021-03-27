@@ -47,6 +47,10 @@ class LocalDataSource: DataSourceProtocol {
         }
     }
     
+    func addOrder(food: Food) {
+        Database.shared.addOrder(food: food)
+    }
+    
     func fetchOrders() -> Observable<[Order]> {
         
         return Observable.create { (observer) -> Disposable in

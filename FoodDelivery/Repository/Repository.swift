@@ -10,6 +10,7 @@ import RxSwift
 
 protocol RepositoryProtocol {
     func requestMenu() -> Observable<[Food]>
+    func addOrder(food: Food)
     func requestOrders() -> Observable<[Order]>
 }
 
@@ -19,6 +20,10 @@ class Repository: RepositoryProtocol {
     
     func requestMenu() -> Observable<[Food]> {
         return dataSource.fetchMenu()
+    }
+    
+    func addOrder(food: Food) {
+         dataSource.addOrder(food: food)
     }
     
     func requestOrders() -> Observable<[Order]> {
