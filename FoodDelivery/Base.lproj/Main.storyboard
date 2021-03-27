@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOm-Tu-3as">
-                                <rect key="frame" x="0.0" y="44" width="375" height="197"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="177"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="izZ-6S-GXv">
                                 <rect key="frame" x="168" y="178" width="39" height="37"/>
@@ -161,7 +161,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="VOm-Tu-3as" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7tQ-lF-oRb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tcs-mc-ENJ" secondAttribute="trailing" constant="15" id="9qZ-dt-bXw"/>
@@ -169,7 +169,7 @@
                             <constraint firstItem="JnI-Po-dhh" firstAttribute="top" secondItem="VOm-Tu-3as" secondAttribute="bottom" constant="-27" id="MRH-fN-Nw9"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JnI-Po-dhh" secondAttribute="trailing" id="Sg7-cC-7fc"/>
                             <constraint firstItem="izZ-6S-GXv" firstAttribute="top" secondItem="VOm-Tu-3as" secondAttribute="bottom" constant="-63" id="UWL-nZ-nJa"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="VOm-Tu-3as" secondAttribute="top" constant="20" id="XS0-LX-5Ub"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="VOm-Tu-3as" secondAttribute="top" id="XS0-LX-5Ub"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="JnI-Po-dhh" secondAttribute="bottom" id="ZsK-nc-s7B"/>
                             <constraint firstItem="JnI-Po-dhh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bnG-dF-T5G"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VOm-Tu-3as" secondAttribute="trailing" id="fgg-V1-fUu"/>
@@ -323,7 +323,7 @@
                                 <state key="normal" title="Button" image="creditcard"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="5pB-Ug-gAW" firstAttribute="top" secondItem="Jhl-id-jhf" secondAttribute="top" constant="88" id="0ci-vS-k5K"/>
                             <constraint firstItem="NZk-NG-tJ7" firstAttribute="leading" secondItem="Jhl-id-jhf" secondAttribute="leading" constant="15" id="6Hr-GX-ori"/>

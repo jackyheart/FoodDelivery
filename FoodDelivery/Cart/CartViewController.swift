@@ -34,7 +34,12 @@ class CartViewController: UIViewController {
     }
     
     private func configureUI() {
+        configureViews()
         configureButtons()
+    }
+    
+    private func configureViews() {
+
     }
     
     private func configureButtons() {

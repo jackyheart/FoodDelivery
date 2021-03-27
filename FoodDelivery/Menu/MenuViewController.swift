@@ -55,7 +55,7 @@ class MenuViewController: UIViewController {
         //configure UI
         configureUI()
         
-        //add gesture
+        //add gestures
         addGestures()
         
         //get presenter
