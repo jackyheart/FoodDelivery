@@ -39,6 +39,10 @@ class CartViewController: UIViewController {
     }
     
     private func configureViews() {
+        
+        //navigation bar
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "< menu", style: .plain, target: self, action: #selector(backTapped))
+        
         //table view
         cartTableView.separatorStyle = .none
         cartTableView.allowsSelection = false
@@ -54,6 +58,10 @@ class CartViewController: UIViewController {
         checkOutBtn.rx.tap.subscribe(onNext: {
             print("checkout!")
         }).disposed(by: disposeBag)
+    }
+    
+    @objc private func backTapped() {
+        presenter?.onBackTapped()
     }
 }
 

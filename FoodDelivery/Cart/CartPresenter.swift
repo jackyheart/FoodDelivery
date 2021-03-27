@@ -23,6 +23,10 @@ class CartPresenter {
         view?.displayOrders(orders: orders)
     }
     
+    func onBackTapped() {
+        router.navigateBackToMenu()
+    }
+    
     func getTotal(orders: [Order]) -> Double {
         var total: Double = 0.0
         for order in orders {

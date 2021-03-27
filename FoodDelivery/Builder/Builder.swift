@@ -21,7 +21,7 @@ class Builder {
     
     func getCartPresenter(view: CartViewProtocol) -> CartPresenter {
         let interactor = CartInteractor(repository: Repository.shared)
-        let router = CartRouter()
+        let router = CartRouter(viewController: (view as? UIViewController))
         return CartPresenter(interactor: interactor, router: router, view: view)
     }
     
