@@ -13,12 +13,8 @@ protocol MenuRepositoryProtocol {
 }
 
 class Repository: MenuRepositoryProtocol {
-    
-    private var dataSource: MenuDataSourceProtocol
-    
-    init(dataSource: MenuDataSourceProtocol) {
-        self.dataSource = dataSource
-    }
+    static let shared = Repository()
+    var dataSource: MenuDataSourceProtocol = LocalDataSource()
     
     func requestMenu() -> Observable<[Food]> {
         return dataSource.fetchMenu()

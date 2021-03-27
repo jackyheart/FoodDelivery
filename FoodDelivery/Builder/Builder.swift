@@ -12,8 +12,8 @@ class Builder {
     static let shared = Builder()
 
     func getMenuPresenter(view: MenuViewProtocol) -> MenuPresenter {
-        let localDataSource = LocalDataSource()
-        let repository = Repository(dataSource: localDataSource)
+        let repository = Repository.shared
+        repository.dataSource = LocalDataSource()
         let interactor = MenuInteractor(repository: repository)
         let router = MenuRouter()
         return MenuPresenter(interactor: interactor, router: router, view: view)
