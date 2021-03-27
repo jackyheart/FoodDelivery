@@ -12,6 +12,7 @@ class MenuPresenter {
 
     private let interactor: MenuInteractorProtocol
     private let router: MenuRouterProtocol
+    private let disposeBag = DisposeBag()
     private weak var view: MenuViewProtocol?
 
     init(interactor: MenuInteractorProtocol, router: MenuRouterProtocol, view: MenuViewProtocol) {
@@ -31,5 +32,16 @@ class MenuPresenter {
     
     func onAddMenu(food: Food) {
         interactor.addOrder(food: food)
+        
+        interactor.getOrderist().subscribe(onNext: { [weak self] in
+            
+            var total: Int = 0
+            for order in $0 {
+                total += order.quantity
+            }
+            
+            self?.view?.updateCounter(counter: total)
+            
+        }).disposed(by: disposeBag)
     }
 }

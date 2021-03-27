@@ -12,6 +12,7 @@ import RxCocoa
 
 protocol MenuViewProtocol: class {
     func displayMenu(menu: Observable<[Food]>)
+    func updateCounter(counter: Int)
 }
 
 enum MenuType: String, CaseIterable {
@@ -228,6 +229,15 @@ extension MenuViewController: MenuViewProtocol {
     func displayMenu(menu: Observable<[Food]>) {
         //set initial display with type 'pizza'
         showMenuByType(menu: menu, type: currentMenuType)
+    }
+    
+    func updateCounter(counter: Int) {
+        if counter == 0 {
+            counterLbl.isHidden = true
+        } else {
+            counterLbl.isHidden = false
+            counterLbl.text = "\(counter)"
+        }
     }
 }
 
