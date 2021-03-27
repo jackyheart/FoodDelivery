@@ -149,6 +149,13 @@ class MenuViewController: UIViewController {
         cartBtn.layer.borderWidth = 1.0
         cartBtn.alpha = 0.0
         cartBtn.isHidden = true
+        cartBtn.rx.tap.subscribe(onNext: { [weak self] in
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let cartVC = storyboard.instantiateViewController(withIdentifier: "Cart")
+            self?.navigationController?.pushViewController(cartVC, animated: true)
+            
+        }).disposed(by: disposeBag)
     }
     
     private func configureLabels() {
@@ -192,9 +199,6 @@ class MenuViewController: UIViewController {
             currentMenuType = MenuType.allCases[idx]
         }
         */
-    }
-    
-    @IBAction func cartTapped(_ sender: Any) {
     }
     
     private func showMenuByType(menu: Observable<[Food]>, type: MenuType) {
