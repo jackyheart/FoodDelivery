@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class MenuCell: UITableViewCell {
     
@@ -16,6 +17,7 @@ class MenuCell: UITableViewCell {
     @IBOutlet weak var descLbl: UILabel!
     @IBOutlet weak var sizeLbl: UILabel!
     @IBOutlet weak var priceBtn: UIButton!
+    var disposeBag: DisposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,6 +35,11 @@ class MenuCell: UITableViewCell {
         //configure button        
         priceBtn.layer.cornerRadius = priceBtn.frame.height * 0.5
         priceBtn.layer.masksToBounds = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

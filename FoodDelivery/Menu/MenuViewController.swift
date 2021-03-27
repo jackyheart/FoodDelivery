@@ -101,24 +101,25 @@ class MenuViewController: UIViewController {
         menuTableView.delegate = self
         
         //bind table view
-        let localPresenter = presenter
-        let localDisposeBag = disposeBag
-        
-        rxDataSource.bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, food, cell in
+        rxDataSource.asObservable()
+            .bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, food, cell in
             
-            let menuCell = cell as? MenuCell
-            menuCell?.nameLbl.text = food.name
-            menuCell?.descLbl.text = food.description
-            menuCell?.sizeLbl.text = food.size
-            menuCell?.setImage(imageName: food.imageName)
-            menuCell?.setPriceBtnTitle(title: "SGD \(food.price)")
+            guard let menuCell = cell as? MenuCell else {
+                return
+            }
             
-            menuCell?.priceBtn.rx.tap.subscribe(onNext: {
+            menuCell.nameLbl.text = food.name
+            menuCell.descLbl.text = food.description
+            menuCell.sizeLbl.text = food.size
+            menuCell.setImage(imageName: food.imageName)
+            menuCell.setPriceBtnTitle(title: "SGD \(food.price)")
+            
+            menuCell.priceBtn.rx.tap.subscribe(onNext: { [weak self] in
                 
                 //add menu item
-                localPresenter?.onAddMenu(food: food)
+                self?.presenter?.onAddMenu(food: food)
                 
-            }).disposed(by: localDisposeBag)
+            }).disposed(by: menuCell.disposeBag)
             
         }.disposed(by: disposeBag)
         
@@ -161,10 +162,9 @@ class MenuViewController: UIViewController {
         cartBtn.alpha = 0.0
         cartBtn.isHidden = true
         
-        let localPresenter = presenter
-        cartBtn.rx.tap.subscribe(onNext: {
+        cartBtn.rx.tap.subscribe(onNext: { [weak self] in
             
-            localPresenter?.onCartBtnTapped()
+            self?.presenter?.onCartBtnTapped()
             
         }).disposed(by: disposeBag)
     }
