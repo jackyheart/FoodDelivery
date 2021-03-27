@@ -11,25 +11,9 @@ import RxSwift
 import RxCocoa
 
 protocol MenuViewProtocol: class {
-    func displayMenu(menu: Observable<[Food]>)
+    func displayMenu(menu: [Food])
+    func updateMenuType(menuType: MenuType)
     func updateCounter(counter: Int)
-}
-
-enum MenuType: String, CaseIterable {
-    case pizza
-    case sushi
-    case drinks
-    
-    var intVal: Int {
-        switch self {
-        case .pizza:
-            return 0
-        case .sushi:
-            return 1
-        case .drinks:
-            return 2
-        }
-    }
 }
 
 class MenuViewController: UIViewController {
@@ -46,8 +30,8 @@ class MenuViewController: UIViewController {
     private var menuTypeBtns: [UIButton] = []
     private var presenter: MenuPresenter?
     private let disposeBag = DisposeBag()
-    private var currentMenuType: MenuType = .pizza
-    private let dataSource = BehaviorRelay(value: [Food]())
+    
+    private let rxDataSource = BehaviorRelay(value: [Food]())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,6 +100,23 @@ class MenuViewController: UIViewController {
         menuTableView.allowsSelection = false
         menuTableView.delegate = self
         
+        //bind table view
+        rxDataSource.bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, food, cell in
+            
+            let menuCell = cell as? MenuCell
+            menuCell?.nameLbl.text = food.name
+            menuCell?.descLbl.text = food.description
+            menuCell?.sizeLbl.text = food.size
+            menuCell?.setImage(imageName: food.imageName)
+            menuCell?.setPriceBtnTitle(title: "SGD \(food.price)")
+            
+            menuCell?.priceBtn.rx.tap.subscribe(onNext: {
+                //add menu item
+                self.presenter?.onAddMenu(food: food)
+            }).disposed(by: self.disposeBag)
+            
+        }.disposed(by: disposeBag)
+        
         //get initial top constraints
         initialTopConstraint = menuTopConstraint.constant
     }
@@ -170,9 +171,14 @@ class MenuViewController: UIViewController {
     }
     
     @objc private func menuTypeTapped(sender: UIButton) {
+        highlightMenuType(index: sender.tag)
+        presenter?.onMenuTypeTapped(index: sender.tag)
+    }
+    
+    private func highlightMenuType(index: Int) {
         for btn in self.menuTypeBtns {
             var color: UIColor = .lightGray
-            if btn.tag == sender.tag {
+            if btn.tag == index {
                 color = .black
             }
             btn.setTitleColor(color, for: .normal)
@@ -184,24 +190,7 @@ class MenuViewController: UIViewController {
     }
     
     @objc private func swipeDected(gesture: UISwipeGestureRecognizer) {
-        
-        //TODO: send event to presenter
-        
-        /*
-        if gesture.direction == .left {
-            
-            let idx = (currentMenuType.intVal + 1) % MenuType.allCases.count
-            currentMenuType = MenuType.allCases[idx]
-            
-        } else if gesture.direction == .right {
-            
-            var idx = (currentMenuType.intVal - 1) % MenuType.allCases.count
-            if idx < 0 {
-                idx = MenuType.allCases.count - 1
-            }
-            currentMenuType = MenuType.allCases[idx]
-        }
-        */
+        presenter?.onGestureDected(direction: gesture.direction)
     }
     
     private func showMenuByType(menu: Observable<[Food]>, type: MenuType) {
@@ -226,9 +215,12 @@ class MenuViewController: UIViewController {
 
 extension MenuViewController: MenuViewProtocol {
     
-    func displayMenu(menu: Observable<[Food]>) {
-        //set initial display with type 'pizza'
-        showMenuByType(menu: menu, type: currentMenuType)
+    func displayMenu(menu: [Food]) {
+        rxDataSource.accept(menu)
+    }
+    
+    func updateMenuType(menuType: MenuType) {
+        highlightMenuType(index: menuType.intVal)
     }
     
     func updateCounter(counter: Int) {

@@ -8,12 +8,31 @@
 
 import RxSwift
 
+enum MenuType: String, CaseIterable {
+    case pizza
+    case sushi
+    case drinks
+    
+    var intVal: Int {
+        switch self {
+        case .pizza:
+            return 0
+        case .sushi:
+            return 1
+        case .drinks:
+            return 2
+        }
+    }
+}
+
 class MenuPresenter {
 
     private let interactor: MenuInteractorProtocol
     private let router: MenuRouterProtocol
     private let disposeBag = DisposeBag()
     private weak var view: MenuViewProtocol?
+    private var menuData: [Food] = []
+    private var currentMenuType: MenuType = .pizza
 
     init(interactor: MenuInteractorProtocol, router: MenuRouterProtocol, view: MenuViewProtocol) {
         self.interactor = interactor
@@ -23,11 +42,45 @@ class MenuPresenter {
     
     func onViewDidLoad() {
         let menu = interactor.getMenuList()
-        view?.displayMenu(menu: menu)
+        
+        menu.subscribe(onNext: { [weak self] in
+            
+            //hold reference to current unfiltered data
+            self?.menuData = $0
+            
+            //set initial display with type 'pizza'
+            self?.view?.displayMenu(menu: $0.filter({ $0.type == MenuType.pizza.rawValue }))
+            
+        }).disposed(by: disposeBag)
     }
     
-    func onCartBtnTapped() {
-        router.navigateToOrderSummary()
+    func onMenuTypeTapped(index: Int) {
+        currentMenuType = MenuType.allCases[index]
+        
+        //filter
+        let filteredMenu = menuData.filter({ $0.type == currentMenuType.rawValue })
+        view?.displayMenu(menu: filteredMenu)
+    }
+    
+    func onGestureDected(direction: UISwipeGestureRecognizer.Direction) {
+        
+        if direction == .left {
+            
+            let idx = (currentMenuType.intVal + 1) % MenuType.allCases.count
+            currentMenuType = MenuType.allCases[idx]
+            
+        } else if direction == .right {
+            
+            var idx = (currentMenuType.intVal - 1) % MenuType.allCases.count
+            if idx < 0 {
+                idx = MenuType.allCases.count - 1
+            }
+            currentMenuType = MenuType.allCases[idx]
+        }
+        
+        //filter
+        let filteredMenu = menuData.filter({ $0.type == currentMenuType.rawValue })
+        view?.displayMenu(menu: filteredMenu)
     }
     
     func onAddMenu(food: Food) {
@@ -43,5 +96,9 @@ class MenuPresenter {
             self?.view?.updateCounter(counter: total)
             
         }).disposed(by: disposeBag)
+    }
+    
+    func onCartBtnTapped() {
+        router.navigateToOrderSummary()
     }
 }
