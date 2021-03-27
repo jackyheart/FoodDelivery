@@ -14,7 +14,7 @@ class OrderCell: UITableViewCell {
     @IBOutlet weak var orderNameLbl: UILabel!
     @IBOutlet weak var quantityLbl: UILabel!
     @IBOutlet weak var subtotalLbl: UILabel!
-    @IBOutlet weak var closeBtn: UIButton!
+    @IBOutlet weak var cancelBtn: UIButton!
     var disposeBag: DisposeBag = DisposeBag()
     
     override func awakeFromNib() {

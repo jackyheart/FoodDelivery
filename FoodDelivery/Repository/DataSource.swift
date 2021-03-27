@@ -12,4 +12,5 @@ protocol DataSourceProtocol {
     func fetchMenu() -> Observable<[Food]>
     func addOrder(food: Food)
     func fetchOrders() -> Observable<[Order]>
+    func removeOrder(order: Order) -> Observable<[Order]>
 }

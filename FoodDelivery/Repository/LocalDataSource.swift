@@ -60,4 +60,14 @@ class LocalDataSource: DataSourceProtocol {
             return Disposables.create { }
         }
     }
+    
+    func removeOrder(order: Order) -> Observable<[Order]> {
+        
+        return Observable.create { (observer) -> Disposable in
+            let orders = Database.shared.deleteOrder(order: order)
+            observer.onNext(orders)
+            
+            return Disposables.create { }
+        }
+    }
 }

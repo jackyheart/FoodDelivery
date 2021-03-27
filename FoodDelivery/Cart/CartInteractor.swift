@@ -10,6 +10,7 @@ import RxSwift
 
 protocol CartInteractorProtocol {
     func getOrderList() -> Observable<[Order]>
+    func removeOrder(order: Order) -> Observable<[Order]>
 }
 
 class CartInteractor: CartInteractorProtocol {
@@ -22,5 +23,9 @@ class CartInteractor: CartInteractorProtocol {
     
     func getOrderList() -> Observable<[Order]> {
         return repository.requestOrders()
+    }
+    
+    func removeOrder(order: Order) -> Observable<[Order]> {
+        return repository.removeOrder(order: order)
     }
 }

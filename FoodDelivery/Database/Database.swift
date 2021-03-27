@@ -23,4 +23,11 @@ class Database {
     func retrieveOrders() -> [Order] {
         return orders
     }
+    
+    func deleteOrder(order: Order) -> [Order] {
+        if let index = orders.index(where: { $0.food == order.food }) {
+            orders.remove(at: index)
+        }
+        return orders
+    }
 }

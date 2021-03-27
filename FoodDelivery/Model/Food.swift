@@ -8,7 +8,7 @@
 
 import ObjectMapper
 
-struct Food: Mappable {
+struct Food: Mappable, Equatable {
     var imageName: String = ""
     var name: String = ""
     var type: String = ""
@@ -27,5 +27,9 @@ struct Food: Mappable {
         description <- map["description"]
         size <- map["size"]
         price <- map["price"]
+    }
+    
+    static func ==(lhs: Food, rhs: Food) -> Bool {
+        return lhs.name == rhs.name
     }
 }

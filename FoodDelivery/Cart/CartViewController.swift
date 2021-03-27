@@ -83,9 +83,14 @@ extension CartViewController: CartViewProtocol {
             orderCell.quantityLbl.text = "\(quantity) x SGD \(price)"
             orderCell.subtotalLbl.text = "SGD \(Double(quantity) * price)"
             
-            orderCell.closeBtn.rx.tap.subscribe(onNext: {
+            orderCell.cancelBtn.rx.tap.subscribe(onNext: { [weak self] in
                 
-                print("presenter remove item")
+                let updatedOrder = self?.presenter?.onCancelOrderBtnTapped(order: order)
+                updatedOrder?.subscribe(onNext: { (orderList) in
+                    
+                    print("order deleted!")
+                    
+                }).disposed(by: orderCell.disposeBag)
                 
             }).disposed(by: orderCell.disposeBag)
             

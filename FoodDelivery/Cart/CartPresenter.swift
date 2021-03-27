@@ -6,6 +6,8 @@
 //  Copyright © 2021 Jacky Tjoa. All rights reserved.
 //
 
+import RxSwift
+
 class CartPresenter {
     
     private let interactor: CartInteractorProtocol
@@ -34,5 +36,9 @@ class CartPresenter {
             total += subtotal
         }
         return total
+    }
+    
+    func onCancelOrderBtnTapped(order: Order) -> Observable<[Order]> {
+        return interactor.removeOrder(order: order)
     }
 }

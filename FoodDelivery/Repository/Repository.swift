@@ -12,6 +12,7 @@ protocol RepositoryProtocol {
     func requestMenu() -> Observable<[Food]>
     func addOrder(food: Food)
     func requestOrders() -> Observable<[Order]>
+    func removeOrder(order: Order) -> Observable<[Order]>
 }
 
 class Repository: RepositoryProtocol {
@@ -28,5 +29,9 @@ class Repository: RepositoryProtocol {
     
     func requestOrders() -> Observable<[Order]> {
         return dataSource.fetchOrders()
+    }
+    
+    func removeOrder(order: Order) -> Observable<[Order]> {
+        return dataSource.removeOrder(order: order)
     }
 }
