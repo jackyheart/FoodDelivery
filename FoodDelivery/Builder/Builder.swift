@@ -15,7 +15,7 @@ class Builder {
         let repository = Repository.shared
         repository.dataSource = LocalDataSource()
         let interactor = MenuInteractor(repository: repository)
-        let router = MenuRouter()
+        let router = MenuRouter(viewController: (view as? UIViewController))
         return MenuPresenter(interactor: interactor, router: router, view: view)
     }
     

@@ -151,9 +151,7 @@ class MenuViewController: UIViewController {
         cartBtn.isHidden = true
         cartBtn.rx.tap.subscribe(onNext: { [weak self] in
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let cartVC = storyboard.instantiateViewController(withIdentifier: "Cart")
-            self?.navigationController?.pushViewController(cartVC, animated: true)
+            self?.presenter?.onCartBtnTapped()
             
         }).disposed(by: disposeBag)
     }

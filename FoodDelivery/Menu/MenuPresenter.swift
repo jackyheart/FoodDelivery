@@ -25,7 +25,7 @@ class MenuPresenter {
         view?.displayMenu(menu: menu)
     }
     
-    func onNextPressed() {
+    func onCartBtnTapped() {
         router.navigateToOrderSummary()
     }
     
