@@ -92,10 +92,10 @@ extension CartViewController: CartViewProtocol {
         }.disposed(by: disposeBag)
         
         
-        orders.subscribe(onNext: {
+        orders.subscribe(onNext: { [weak self] in
 
-            if let presenter = self.presenter {
-                self.totalPriceLbl.text = "SGD \(presenter.getTotal(orders: $0))"
+            if let presenter = self?.presenter {
+                self?.totalPriceLbl.text = "SGD \(presenter.getTotal(orders: $0))"
             }
             
         }).disposed(by: disposeBag)
