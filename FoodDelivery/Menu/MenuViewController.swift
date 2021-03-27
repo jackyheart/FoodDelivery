@@ -102,6 +102,7 @@ class MenuViewController: UIViewController {
         
         //bind table view
         let localPresenter = presenter
+        let localDisposeBag = disposeBag
         
         rxDataSource.bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, food, cell in
             
@@ -117,7 +118,7 @@ class MenuViewController: UIViewController {
                 //add menu item
                 localPresenter?.onAddMenu(food: food)
                 
-            }).disposed(by: self.disposeBag)
+            }).disposed(by: localDisposeBag)
             
         }.disposed(by: disposeBag)
         
