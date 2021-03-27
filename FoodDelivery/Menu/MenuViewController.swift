@@ -216,7 +216,7 @@ class MenuViewController: UIViewController {
                 
                 menuCell?.priceBtn.rx.tap.subscribe(onNext: {
                     //add menu item
-                    self.presenter?.onMenuAdded(food: food)
+                    self.presenter?.onAddMenu(food: food)
                 }).disposed(by: self.disposeBag)
 
             }.disposed(by: disposeBag)

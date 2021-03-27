@@ -29,7 +29,7 @@ class MenuPresenter {
         router.navigateToOrderSummary()
     }
     
-    func onMenuAdded(food: Food) {
+    func onAddMenu(food: Food) {
         //add order to database
         Database.shared.addOrder(food: food)
     }
