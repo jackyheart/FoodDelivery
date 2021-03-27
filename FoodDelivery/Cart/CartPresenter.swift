@@ -8,4 +8,18 @@
 
 class CartPresenter {
     
+    private let interactor: CartInteractorProtocol
+    private let router: CartRouterProtocol
+    private weak var view: CartViewProtocol?
+    
+    init(interactor: CartInteractorProtocol, router: CartRouterProtocol, view: CartViewProtocol) {
+        self.interactor = interactor
+        self.router = router
+        self.view = view
+    }
+    
+    func onViewDidLoad() {
+        let orders = interactor.getOrderList()
+        view?.displayOrders(orders: orders)
+    }
 }

@@ -10,14 +10,27 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol CartViewProtocol: class {
+    func displayOrders(orders: Observable<[Order]>)
+}
+
 class CartViewController: UIViewController {
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var totalPriceLbl: UILabel!
     @IBOutlet weak var checkOutBtn: UIButton!
     
+    private let disposeBag = DisposeBag()
+    private var presenter: CartPresenter?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //configure UI
         configureUI()
+        
+        //get presenter
+        presenter = Builder.shared.getCartPresenter(view: self)
+        presenter?.onViewDidLoad()
     }
     
     private func configureUI() {
@@ -32,6 +45,13 @@ class CartViewController: UIViewController {
         checkOutBtn.layer.borderWidth = 1.0
         checkOutBtn.rx.tap.subscribe(onNext: {
             print("checkout!")
-        })
+        }).disposed(by: disposeBag)
+    }
+}
+
+extension CartViewController: CartViewProtocol {
+    
+    func displayOrders(orders: Observable<[Order]>) {
+        
     }
 }

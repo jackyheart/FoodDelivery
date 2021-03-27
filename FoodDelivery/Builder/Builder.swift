@@ -19,6 +19,12 @@ class Builder {
         return MenuPresenter(interactor: interactor, router: router, view: view)
     }
     
+    func getCartPresenter(view: CartViewProtocol) -> CartPresenter {
+        let interactor = CartInteractor(repository: Repository.shared)
+        let router = CartRouter()
+        return CartPresenter(interactor: interactor, router: router, view: view)
+    }
+    
     func generateMenuTypeButtonArray(titles: [String], topLeft: CGPoint,
                                      width: CGFloat, spacing: CGFloat,
                                      target: Any?, selector: Selector) -> [UIButton] {
