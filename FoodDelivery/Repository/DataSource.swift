@@ -8,6 +8,7 @@
 
 import RxSwift
 
-protocol MenuDataSourceProtocol {
+protocol DataSourceProtocol {
     func fetchMenu() -> Observable<[Food]>
+    func fetchOrders() -> Observable<[Order]>
 }

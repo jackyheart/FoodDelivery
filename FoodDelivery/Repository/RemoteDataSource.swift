@@ -8,10 +8,20 @@
 
 import RxSwift
 
-class RemoteDataSource: MenuDataSourceProtocol {
+class RemoteDataSource: DataSourceProtocol {
     
     func fetchMenu() -> Observable<[Food]> {
         //fetch from api        
         return Observable.empty()
+    }
+    
+    func fetchOrders() -> Observable<[Order]> {
+        
+        return Observable.create { (observer) -> Disposable in
+            let orders = Database.shared.retrieveOrders()
+            observer.onNext(orders)
+            
+            return Disposables.create { }
+        }
     }
 }

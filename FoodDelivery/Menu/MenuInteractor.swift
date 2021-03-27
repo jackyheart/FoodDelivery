@@ -14,9 +14,9 @@ protocol MenuInteractorProtocol {
 
 class MenuInteractor: MenuInteractorProtocol {
 
-    private let repository: MenuRepositoryProtocol
+    private let repository: RepositoryProtocol
 
-    init(repository: MenuRepositoryProtocol) {
+    init(repository: RepositoryProtocol) {
         self.repository = repository
     }
 

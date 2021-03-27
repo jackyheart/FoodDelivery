@@ -10,11 +10,11 @@ import Foundation
 import RxSwift
 import ObjectMapper
 
-class LocalDataSource: MenuDataSourceProtocol {
+class LocalDataSource: DataSourceProtocol {
     
     func fetchMenu() -> Observable<[Food]> {
         
-        return Observable.create({ (observer) -> Disposable in
+        return Observable.create { (observer) -> Disposable in
             
             guard let path = Bundle.main.path(forResource: "menu", ofType: "json") else {
                 let error = NSError(domain: "", code: -1, userInfo: ["reason": "path not found"])
@@ -44,6 +44,16 @@ class LocalDataSource: MenuDataSourceProtocol {
             }
 
             return Disposables.create { }
-        })
+        }
+    }
+    
+    func fetchOrders() -> Observable<[Order]> {
+        
+        return Observable.create { (observer) -> Disposable in
+            let orders = Database.shared.retrieveOrders()
+            observer.onNext(orders)
+            
+            return Disposables.create { }
+        }
     }
 }

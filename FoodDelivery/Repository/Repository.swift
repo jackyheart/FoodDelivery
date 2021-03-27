@@ -8,15 +8,20 @@
 
 import RxSwift
 
-protocol MenuRepositoryProtocol {
+protocol RepositoryProtocol {
     func requestMenu() -> Observable<[Food]>
+    func requestOrders() -> Observable<[Order]>
 }
 
-class Repository: MenuRepositoryProtocol {
+class Repository: RepositoryProtocol {
     static let shared = Repository()
-    var dataSource: MenuDataSourceProtocol = LocalDataSource()
+    var dataSource: DataSourceProtocol = LocalDataSource()
     
     func requestMenu() -> Observable<[Food]> {
         return dataSource.fetchMenu()
+    }
+    
+    func requestOrders() -> Observable<[Order]> {
+        return dataSource.fetchOrders()
     }
 }

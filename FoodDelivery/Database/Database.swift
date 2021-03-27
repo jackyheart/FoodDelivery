@@ -20,7 +20,7 @@ class Database {
         }
     }
     
-    func retrieveOrder() -> [Order] {
+    func retrieveOrders() -> [Order] {
         return orders
     }
 }
