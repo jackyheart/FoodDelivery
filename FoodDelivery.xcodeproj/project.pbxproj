@@ -221,11 +221,11 @@
 		89A5B86F260ECF78003B94CC /* Cart */ = {
 			isa = PBXGroup;
 			children = (
-				89A5B870260ECF93003B94CC /* CartViewController.swift */,
-				89A5B872260ED048003B94CC /* OrderCell.swift */,
+				89A5B878260ED196003B94CC /* CartRouter.swift */,
 				89A5B874260ED12C003B94CC /* CartInteractor.swift */,
 				89A5B876260ED15D003B94CC /* CartPresenter.swift */,
-				89A5B878260ED196003B94CC /* CartRouter.swift */,
+				89A5B870260ECF93003B94CC /* CartViewController.swift */,
+				89A5B872260ED048003B94CC /* OrderCell.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";

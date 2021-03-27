@@ -7,26 +7,31 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class CartViewController: UIViewController {
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var totalPriceLbl: UILabel!
+    @IBOutlet weak var checkOutBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureUI()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func configureUI() {
+        configureButtons()
     }
-    */
-
+    
+    private func configureButtons() {
+        //configure checkout button
+        checkOutBtn.layer.cornerRadius = checkOutBtn.bounds.width * 0.5
+        checkOutBtn.layer.masksToBounds = true
+        checkOutBtn.layer.borderColor = UIColor.groupTableViewBackground.cgColor
+        checkOutBtn.layer.borderWidth = 1.0
+        checkOutBtn.rx.tap.subscribe(onNext: {
+            print("checkout!")
+        })
+    }
 }

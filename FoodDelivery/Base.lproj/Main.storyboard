@@ -314,6 +314,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wqN-OL-yjV">
+                                <rect key="frame" x="316" y="588" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="c0W-nD-UGj"/>
+                                    <constraint firstAttribute="height" constant="44" id="tBU-m5-cfW"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="creditcard"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -323,6 +331,8 @@
                             <constraint firstItem="afn-Ij-vdC" firstAttribute="top" secondItem="NZk-NG-tJ7" secondAttribute="bottom" constant="7" id="Les-Ag-6SV"/>
                             <constraint firstItem="Jhl-id-jhf" firstAttribute="trailing" secondItem="NZk-NG-tJ7" secondAttribute="trailing" constant="15" id="Ljg-6r-IPz"/>
                             <constraint firstItem="NZk-NG-tJ7" firstAttribute="top" secondItem="5pB-Ug-gAW" secondAttribute="bottom" constant="10" id="Lph-fh-HsR"/>
+                            <constraint firstItem="Jhl-id-jhf" firstAttribute="trailing" secondItem="wqN-OL-yjV" secondAttribute="trailing" constant="15" id="Ncz-DI-nx4"/>
+                            <constraint firstItem="Jhl-id-jhf" firstAttribute="bottom" secondItem="wqN-OL-yjV" secondAttribute="bottom" constant="35" id="ZiR-z2-UTw"/>
                             <constraint firstItem="eMF-Hd-Q3N" firstAttribute="leading" secondItem="afn-Ij-vdC" secondAttribute="trailing" id="agN-S6-G2P"/>
                             <constraint firstItem="Jhl-id-jhf" firstAttribute="trailing" secondItem="eMF-Hd-Q3N" secondAttribute="trailing" constant="15" id="f8v-Kq-TUx"/>
                             <constraint firstItem="eMF-Hd-Q3N" firstAttribute="top" secondItem="NZk-NG-tJ7" secondAttribute="bottom" constant="4" id="imK-Ea-FoW"/>
@@ -333,12 +343,13 @@
                     </view>
                     <connections>
                         <outlet property="cartTableView" destination="5pB-Ug-gAW" id="DUO-HM-AjA"/>
+                        <outlet property="checkOutBtn" destination="wqN-OL-yjV" id="0hU-5t-cMF"/>
                         <outlet property="totalPriceLbl" destination="eMF-Hd-Q3N" id="6Kt-br-yhE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m1d-Bb-9Eq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1918" y="87"/>
+            <point key="canvasLocation" x="1917.5999999999999" y="86.806596701649184"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="twE-4R-j8F">
@@ -361,5 +372,6 @@
     </scenes>
     <resources>
         <image name="cart" width="25" height="25"/>
+        <image name="creditcard" width="50" height="50"/>
     </resources>
 </document>

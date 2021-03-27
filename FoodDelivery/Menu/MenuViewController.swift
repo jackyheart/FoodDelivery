@@ -143,7 +143,7 @@ class MenuViewController: UIViewController {
         }
         
         //configure cart button
-        cartBtn.layer.cornerRadius = self.cartBtn.bounds.width * 0.5
+        cartBtn.layer.cornerRadius = cartBtn.bounds.width * 0.5
         cartBtn.layer.masksToBounds = true
         cartBtn.layer.borderColor = UIColor.groupTableViewBackground.cgColor
         cartBtn.layer.borderWidth = 1.0
