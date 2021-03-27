@@ -22,4 +22,13 @@ class CartPresenter {
         let orders = interactor.getOrderList()
         view?.displayOrders(orders: orders)
     }
+    
+    func getTotal(orders: [Order]) -> Double {
+        var total: Double = 0.0
+        for order in orders {
+            let subtotal = Double(order.quantity) * order.food.price
+            total += subtotal
+        }
+        return total
+    }
 }

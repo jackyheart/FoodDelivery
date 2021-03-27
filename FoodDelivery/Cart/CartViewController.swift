@@ -39,7 +39,10 @@ class CartViewController: UIViewController {
     }
     
     private func configureViews() {
-
+        //table view
+        cartTableView.separatorStyle = .none
+        cartTableView.allowsSelection = false
+        cartTableView.delegate = self
     }
     
     private func configureButtons() {
@@ -58,5 +61,33 @@ extension CartViewController: CartViewProtocol {
     
     func displayOrders(orders: Observable<[Order]>) {
         
+        orders.bind(to: cartTableView.rx.items(cellIdentifier: "orderCell")) { index, order, cell in
+            
+            let orderCell = cell as? OrderCell
+            orderCell?.setOrderImage(imageName: order.food.imageName)
+            orderCell?.orderNameLbl.text = order.food.name
+            
+            let quantity = order.quantity
+            let price = order.food.price
+            orderCell?.quantityLbl.text = "\(quantity) x SGD \(price)"
+            orderCell?.subtotalLbl.text = "SGD \(Double(quantity) * price)"
+            
+        }.disposed(by: disposeBag)
+        
+        
+        orders.subscribe(onNext: {
+
+            if let presenter = self.presenter {
+                self.totalPriceLbl.text = "SGD \(presenter.getTotal(orders: $0))"
+            }
+            
+        }).disposed(by: disposeBag)
+    }
+}
+
+extension CartViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55.0
     }
 }

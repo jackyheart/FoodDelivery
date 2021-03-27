@@ -18,6 +18,9 @@ class OrderCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        orderImgView.contentMode = .scaleAspectFill
+        orderImgView.layer.masksToBounds = true
+        orderImgView.backgroundColor = .black
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,5 +28,9 @@ class OrderCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func setOrderImage(imageName: String) {
+        let image = UIImage(named: imageName)
+        orderImgView.image = image
+    }
 }
