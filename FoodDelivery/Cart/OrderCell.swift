@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class OrderCell: UITableViewCell {
     @IBOutlet weak var orderImgView: UIImageView!
@@ -14,6 +15,7 @@ class OrderCell: UITableViewCell {
     @IBOutlet weak var quantityLbl: UILabel!
     @IBOutlet weak var subtotalLbl: UILabel!
     @IBOutlet weak var closeBtn: UIButton!
+    var disposeBag: DisposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +23,11 @@ class OrderCell: UITableViewCell {
         orderImgView.contentMode = .scaleAspectFill
         orderImgView.layer.masksToBounds = true
         orderImgView.backgroundColor = .black
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

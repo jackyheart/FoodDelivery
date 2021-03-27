@@ -71,14 +71,23 @@ extension CartViewController: CartViewProtocol {
         
         orders.bind(to: cartTableView.rx.items(cellIdentifier: "orderCell")) { index, order, cell in
             
-            let orderCell = cell as? OrderCell
-            orderCell?.setOrderImage(imageName: order.food.imageName)
-            orderCell?.orderNameLbl.text = order.food.name
+            guard let orderCell = cell as? OrderCell else {
+                return
+            }
+            
+            orderCell.setOrderImage(imageName: order.food.imageName)
+            orderCell.orderNameLbl.text = order.food.name
             
             let quantity = order.quantity
             let price = order.food.price
-            orderCell?.quantityLbl.text = "\(quantity) x SGD \(price)"
-            orderCell?.subtotalLbl.text = "SGD \(Double(quantity) * price)"
+            orderCell.quantityLbl.text = "\(quantity) x SGD \(price)"
+            orderCell.subtotalLbl.text = "SGD \(Double(quantity) * price)"
+            
+            orderCell.closeBtn.rx.tap.subscribe(onNext: {
+                
+                print("presenter remove item")
+                
+            }).disposed(by: orderCell.disposeBag)
             
         }.disposed(by: disposeBag)
         
