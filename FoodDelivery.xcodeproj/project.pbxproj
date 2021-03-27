@@ -26,6 +26,9 @@
 		897C71DF2609F7770049CA33 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897C71DE2609F7770049CA33 /* Builder.swift */; };
 		89A5B871260ECF93003B94CC /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A5B870260ECF93003B94CC /* CartViewController.swift */; };
 		89A5B873260ED048003B94CC /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A5B872260ED048003B94CC /* OrderCell.swift */; };
+		89A5B875260ED12C003B94CC /* CartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A5B874260ED12C003B94CC /* CartInteractor.swift */; };
+		89A5B877260ED15D003B94CC /* CartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A5B876260ED15D003B94CC /* CartPresenter.swift */; };
+		89A5B879260ED196003B94CC /* CartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A5B878260ED196003B94CC /* CartRouter.swift */; };
 		89F19C7C260E4679002DDD57 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F19C7B260E4679002DDD57 /* Database.swift */; };
 		89F19C7E260E46A0002DDD57 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F19C7D260E46A0002DDD57 /* Order.swift */; };
 		8FB5EF22D601E23109360851 /* Pods_FoodDelivery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7818E14C0A81DC46C1F7BF8B /* Pods_FoodDelivery.framework */; };
@@ -71,6 +74,9 @@
 		897C71DE2609F7770049CA33 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 		89A5B870260ECF93003B94CC /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		89A5B872260ED048003B94CC /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		89A5B874260ED12C003B94CC /* CartInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartInteractor.swift; sourceTree = "<group>"; };
+		89A5B876260ED15D003B94CC /* CartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenter.swift; sourceTree = "<group>"; };
+		89A5B878260ED196003B94CC /* CartRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartRouter.swift; sourceTree = "<group>"; };
 		89F19C7B260E4679002DDD57 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		89F19C7D260E46A0002DDD57 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		9A5AF418E77A0DBFFE748174 /* Pods-FoodDelivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDelivery.release.xcconfig"; path = "Target Support Files/Pods-FoodDelivery/Pods-FoodDelivery.release.xcconfig"; sourceTree = "<group>"; };
@@ -217,6 +223,9 @@
 			children = (
 				89A5B870260ECF93003B94CC /* CartViewController.swift */,
 				89A5B872260ED048003B94CC /* OrderCell.swift */,
+				89A5B874260ED12C003B94CC /* CartInteractor.swift */,
+				89A5B876260ED15D003B94CC /* CartPresenter.swift */,
+				89A5B878260ED196003B94CC /* CartRouter.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -400,9 +409,11 @@
 			files = (
 				897C71D72609C7210049CA33 /* Food.swift in Sources */,
 				897C71AC2609C6500049CA33 /* AppDelegate.swift in Sources */,
+				89A5B877260ED15D003B94CC /* CartPresenter.swift in Sources */,
 				897309C1260CA4BF00463ACF /* MenuCell.swift in Sources */,
 				897C71CC2609C6840049CA33 /* MenuPresenter.swift in Sources */,
 				892D9064260B57FD0091DD22 /* RemoteDataSource.swift in Sources */,
+				89A5B875260ED12C003B94CC /* CartInteractor.swift in Sources */,
 				897C71CF2609C69E0049CA33 /* MenuInteractor.swift in Sources */,
 				89A5B873260ED048003B94CC /* OrderCell.swift in Sources */,
 				89F19C7E260E46A0002DDD57 /* Order.swift in Sources */,
@@ -410,6 +421,7 @@
 				897C71DC2609F6FD0049CA33 /* MenuViewController.swift in Sources */,
 				897C71D42609C6E00049CA33 /* MenuRouter.swift in Sources */,
 				897C71DF2609F7770049CA33 /* Builder.swift in Sources */,
+				89A5B879260ED196003B94CC /* CartRouter.swift in Sources */,
 				892D9062260B57F30091DD22 /* LocalDataSource.swift in Sources */,
 				892D9060260B57760091DD22 /* DataSource.swift in Sources */,
 				89F19C7C260E4679002DDD57 /* Database.swift in Sources */,
