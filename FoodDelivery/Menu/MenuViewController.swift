@@ -101,6 +101,8 @@ class MenuViewController: UIViewController {
         menuTableView.delegate = self
         
         //bind table view
+        let localPresenter = presenter
+        
         rxDataSource.bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, food, cell in
             
             let menuCell = cell as? MenuCell
@@ -111,8 +113,10 @@ class MenuViewController: UIViewController {
             menuCell?.setPriceBtnTitle(title: "SGD \(food.price)")
             
             menuCell?.priceBtn.rx.tap.subscribe(onNext: {
+                
                 //add menu item
-                self.presenter?.onAddMenu(food: food)
+                localPresenter?.onAddMenu(food: food)
+                
             }).disposed(by: self.disposeBag)
             
         }.disposed(by: disposeBag)
@@ -155,9 +159,11 @@ class MenuViewController: UIViewController {
         cartBtn.layer.borderWidth = 1.0
         cartBtn.alpha = 0.0
         cartBtn.isHidden = true
-        cartBtn.rx.tap.subscribe(onNext: { [weak self] in
+        
+        let localPresenter = presenter
+        cartBtn.rx.tap.subscribe(onNext: {
             
-            self?.presenter?.onCartBtnTapped()
+            localPresenter?.onCartBtnTapped()
             
         }).disposed(by: disposeBag)
     }
@@ -191,25 +197,6 @@ class MenuViewController: UIViewController {
     
     @objc private func swipeDected(gesture: UISwipeGestureRecognizer) {
         presenter?.onGestureDected(direction: gesture.direction)
-    }
-    
-    private func showMenuByType(menu: Observable<[Food]>, type: MenuType) {
-        menu.map({ $0.filter { $0.type == type.rawValue }})
-            .bind(to: menuTableView.rx.items(cellIdentifier: "menuCell")) { index, food, cell in
-
-                let menuCell = cell as? MenuCell
-                menuCell?.nameLbl.text = food.name
-                menuCell?.descLbl.text = food.description
-                menuCell?.sizeLbl.text = food.size
-                menuCell?.setImage(imageName: food.imageName)
-                menuCell?.setPriceBtnTitle(title: "SGD \(food.price)")
-                
-                menuCell?.priceBtn.rx.tap.subscribe(onNext: {
-                    //add menu item
-                    self.presenter?.onAddMenu(food: food)
-                }).disposed(by: self.disposeBag)
-
-            }.disposed(by: disposeBag)
     }
 }
 
