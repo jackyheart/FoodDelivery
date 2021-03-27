@@ -24,6 +24,8 @@
 		897C71DA2609D3D20049CA33 /* menu.json in Resources */ = {isa = PBXBuildFile; fileRef = 897C71D92609D3D20049CA33 /* menu.json */; };
 		897C71DC2609F6FD0049CA33 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897C71DB2609F6FC0049CA33 /* MenuViewController.swift */; };
 		897C71DF2609F7770049CA33 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897C71DE2609F7770049CA33 /* Builder.swift */; };
+		89A5B871260ECF93003B94CC /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A5B870260ECF93003B94CC /* CartViewController.swift */; };
+		89A5B873260ED048003B94CC /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89A5B872260ED048003B94CC /* OrderCell.swift */; };
 		89F19C7C260E4679002DDD57 /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F19C7B260E4679002DDD57 /* Database.swift */; };
 		89F19C7E260E46A0002DDD57 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F19C7D260E46A0002DDD57 /* Order.swift */; };
 		8FB5EF22D601E23109360851 /* Pods_FoodDelivery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7818E14C0A81DC46C1F7BF8B /* Pods_FoodDelivery.framework */; };
@@ -67,6 +69,8 @@
 		897C71D92609D3D20049CA33 /* menu.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = menu.json; sourceTree = "<group>"; };
 		897C71DB2609F6FC0049CA33 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		897C71DE2609F7770049CA33 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
+		89A5B870260ECF93003B94CC /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		89A5B872260ED048003B94CC /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
 		89F19C7B260E4679002DDD57 /* Database.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
 		89F19C7D260E46A0002DDD57 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		9A5AF418E77A0DBFFE748174 /* Pods-FoodDelivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDelivery.release.xcconfig"; path = "Target Support Files/Pods-FoodDelivery/Pods-FoodDelivery.release.xcconfig"; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				897C71D52609C7120049CA33 /* Model */,
 				892D905C260B56B50091DD22 /* Repository */,
 				897C71CD2609C68F0049CA33 /* Menu */,
+				89A5B86F260ECF78003B94CC /* Cart */,
 				897C71AB2609C6500049CA33 /* AppDelegate.swift */,
 				897C71AF2609C6500049CA33 /* Main.storyboard */,
 				897C71B22609C6550049CA33 /* Assets.xcassets */,
@@ -205,6 +210,15 @@
 				897C71DE2609F7770049CA33 /* Builder.swift */,
 			);
 			path = Builder;
+			sourceTree = "<group>";
+		};
+		89A5B86F260ECF78003B94CC /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				89A5B870260ECF93003B94CC /* CartViewController.swift */,
+				89A5B872260ED048003B94CC /* OrderCell.swift */,
+			);
+			path = Cart;
 			sourceTree = "<group>";
 		};
 		89F19C7A260E4660002DDD57 /* Database */ = {
@@ -390,7 +404,9 @@
 				897C71CC2609C6840049CA33 /* MenuPresenter.swift in Sources */,
 				892D9064260B57FD0091DD22 /* RemoteDataSource.swift in Sources */,
 				897C71CF2609C69E0049CA33 /* MenuInteractor.swift in Sources */,
+				89A5B873260ED048003B94CC /* OrderCell.swift in Sources */,
 				89F19C7E260E46A0002DDD57 /* Order.swift in Sources */,
+				89A5B871260ECF93003B94CC /* CartViewController.swift in Sources */,
 				897C71DC2609F6FD0049CA33 /* MenuViewController.swift in Sources */,
 				897C71D42609C6E00049CA33 /* MenuRouter.swift in Sources */,
 				897C71DF2609F7770049CA33 /* Builder.swift in Sources */,
