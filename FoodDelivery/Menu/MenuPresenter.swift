@@ -29,10 +29,10 @@ class MenuPresenter {
 
     private let interactor: MenuInteractorProtocol
     private let router: MenuRouterProtocol
-    private let disposeBag = DisposeBag()
     private weak var view: MenuViewProtocol?
     private var menuData: [Food] = []
     private var currentMenuType: MenuType = .pizza
+    private let disposeBag = DisposeBag()
 
     init(interactor: MenuInteractorProtocol, router: MenuRouterProtocol, view: MenuViewProtocol) {
         self.interactor = interactor

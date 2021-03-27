@@ -15,13 +15,13 @@ protocol MenuInteractorProtocol {
 }
 
 class MenuInteractor: MenuInteractorProtocol {
-
+    
     private let repository: RepositoryProtocol
-
+    
     init(repository: RepositoryProtocol) {
         self.repository = repository
     }
-
+    
     func getMenuList() -> Observable<[Food]> {
         return repository.requestMenu()
     }

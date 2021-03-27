@@ -30,7 +30,6 @@ class MenuViewController: UIViewController {
     private var menuTypeBtns: [UIButton] = []
     private var presenter: MenuPresenter?
     private let disposeBag = DisposeBag()
-    
     private let rxDataSource = BehaviorRelay(value: [Food]())
     
     override func viewDidLoad() {
