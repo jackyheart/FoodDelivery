@@ -56,13 +56,7 @@ class MenuViewController: UIViewController {
         configureUI()
         
         //add gesture
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeDected))
-        leftSwipe.direction = .left
-        menuTableView.addGestureRecognizer(leftSwipe)
-        
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeDected))
-        rightSwipe.direction = .right
-        menuTableView.addGestureRecognizer(rightSwipe)
+        addGestures()
         
         //get presenter
         presenter = Builder.shared.getMenuPresenter(view: self)
@@ -73,6 +67,16 @@ class MenuViewController: UIViewController {
         configureViews()
         configureButtons()
         configureLabels()
+    }
+    
+    private func addGestures() {
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeDected))
+        leftSwipe.direction = .left
+        menuTableView.addGestureRecognizer(leftSwipe)
+        
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(swipeDected))
+        rightSwipe.direction = .right
+        menuTableView.addGestureRecognizer(rightSwipe)
     }
     
     private func configureViews() {
