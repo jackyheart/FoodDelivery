@@ -21,9 +21,6 @@ class MenuRouter: MenuRouterProtocol {
     }
     
     func navigateToOrderSummary() {
-        
-        print("navigateToOrderSummary, vc navcontrol: \(viewController?.navigationController)")
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let cartVC = storyboard.instantiateViewController(withIdentifier: "Cart")
         viewController?.navigationController?.pushViewController(cartVC, animated: true)
