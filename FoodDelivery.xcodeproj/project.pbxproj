@@ -198,9 +198,9 @@
 		897C71CD2609C68F0049CA33 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				897C71CB2609C6840049CA33 /* MenuPresenter.swift */,
-				897C71CE2609C69E0049CA33 /* MenuInteractor.swift */,
 				897C71D32609C6E00049CA33 /* MenuRouter.swift */,
+				897C71CE2609C69E0049CA33 /* MenuInteractor.swift */,
+				897C71CB2609C6840049CA33 /* MenuPresenter.swift */,
 				897C71DB2609F6FC0049CA33 /* MenuViewController.swift */,
 				897309C0260CA4BF00463ACF /* MenuCell.swift */,
 			);
