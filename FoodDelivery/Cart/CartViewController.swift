@@ -28,6 +28,9 @@ class CartViewController: UIViewController {
     
     private var titleBtns: [UIButton] = []
     private var presenter: CartPresenter?
+    
+    //Rx
+    private let rxDataSource = BehaviorRelay(value: [Order]())
     private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -52,13 +55,42 @@ class CartViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "< Menu", style: .plain, target: self, action: #selector(backTapped))
         navigationItem.leftBarButtonItem?.tintColor = .black
         
-        //empty title
+        //empty message
         emptyLbl.isHidden = true
         
         //table view
         cartTableView.separatorStyle = .none
         cartTableView.allowsSelection = false
         cartTableView.delegate = self
+        
+        //bind table view
+        rxDataSource.asObservable()
+            .bind(to: cartTableView.rx.items(cellIdentifier: "orderCell")) { index, order, cell in
+            
+            guard let orderCell = cell as? OrderCell else {
+                return
+            }
+            
+            orderCell.setOrderImage(imageName: order.food.imageName)
+            orderCell.orderNameLbl.text = order.food.name
+            
+            let quantity = order.quantity
+            let price = order.food.price
+            orderCell.quantityLbl.text = "\(quantity) x SGD \(price)"
+            orderCell.subtotalLbl.text = "SGD \(Double(quantity) * price)"
+            
+            orderCell.cancelBtn.rx.tap.subscribe(onNext: { [weak self] in
+                
+                let updatedOrder = self?.presenter?.onCancelOrderBtnTapped(order: order)
+                updatedOrder?.subscribe(onNext: { [weak self] in
+                    
+                    self?.rxDataSource.accept($0)
+                    
+                }).disposed(by: orderCell.disposeBag)
+                
+            }).disposed(by: orderCell.disposeBag)
+            
+            }.disposed(by: disposeBag)
     }
     
     private func configureButtons() {
@@ -110,36 +142,10 @@ extension CartViewController: CartViewProtocol {
     
     func displayOrders(orders: Observable<[Order]>) {
         
-        orders.bind(to: cartTableView.rx.items(cellIdentifier: "orderCell")) { index, order, cell in
-            
-            guard let orderCell = cell as? OrderCell else {
-                return
-            }
-            
-            orderCell.setOrderImage(imageName: order.food.imageName)
-            orderCell.orderNameLbl.text = order.food.name
-            
-            let quantity = order.quantity
-            let price = order.food.price
-            orderCell.quantityLbl.text = "\(quantity) x SGD \(price)"
-            orderCell.subtotalLbl.text = "SGD \(Double(quantity) * price)"
-            
-            orderCell.cancelBtn.rx.tap.subscribe(onNext: { [weak self] in
-                
-                let updatedOrder = self?.presenter?.onCancelOrderBtnTapped(order: order)
-                updatedOrder?.subscribe(onNext: { (orderList) in
-                    
-                    print("order deleted!")
-                    
-                }).disposed(by: orderCell.disposeBag)
-                
-            }).disposed(by: orderCell.disposeBag)
-            
-        }.disposed(by: disposeBag)
-        
-        
         orders.subscribe(onNext: { [weak self] in
-
+            
+            self?.rxDataSource.accept($0)
+            
             if $0.count == 0 {
                 self?.emptyLbl.isHidden = false
             }
