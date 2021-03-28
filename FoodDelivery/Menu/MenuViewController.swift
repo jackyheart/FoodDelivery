@@ -226,14 +226,10 @@ class MenuViewController: UIViewController {
         }
         
         //fade in / out
+        menuTableView.alpha = 0.0
         UIView.animate(withDuration: 0.5, animations: {
-            self.menuTableView.alpha = 0.0
-        }) { (completed) in
-            
-            UIView.animate(withDuration: 0.5, animations: {
-                self.menuTableView.alpha = 1.0
-            })
-        }
+            self.menuTableView.alpha = 1.0
+        })
     }
     
     @objc private func filterBtnTapped(sender: UIButton) {
