@@ -68,6 +68,7 @@ class MenuPresenter {
         //filter
         let filteredMenu = menuData.filter({ $0.type == currentMenuType.rawValue })
         view?.displayMenu(menu: filteredMenu)
+        view?.updateMenuType(menuType: currentMenuType)
     }
     
     func onAddMenu(food: Food) {

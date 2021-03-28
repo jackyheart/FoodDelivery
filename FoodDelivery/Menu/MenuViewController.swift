@@ -223,6 +223,16 @@ class MenuViewController: UIViewController {
             }
             btn.setTitleColor(color, for: .normal)
         }
+        
+        //fade in / out
+        UIView.animate(withDuration: 0.5, animations: {
+            self.menuTableView.alpha = 0.0
+        }) { (completed) in
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.menuTableView.alpha = 1.0
+            })
+        }
     }
     
     @objc private func filterBtnTapped(sender: UIButton) {
