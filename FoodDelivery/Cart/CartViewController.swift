@@ -135,7 +135,6 @@ class CartViewController: UIViewController {
         checkOutBtn.layer.borderWidth = 1.0
         checkOutBtn.rx.tap.subscribe(onNext: { [weak self] in
             
-            //print("checkout!")
             let alert = UIAlertController(title: "Confirmation", message: "Do you want to checkout?", preferredStyle: .alert)
             
             let okAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in

@@ -10,7 +10,7 @@
     "imageName": "pizza",
     "name": "Hawaiian",
     "type": "pizza",
-    "description": "",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "size": "150 grams, 35 cm",
     "price": 35.0
 },
