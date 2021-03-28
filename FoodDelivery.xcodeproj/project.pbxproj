@@ -11,6 +11,7 @@
 		892D9060260B57760091DD22 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D905F260B57760091DD22 /* DataSource.swift */; };
 		892D9062260B57F30091DD22 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D9061260B57F30091DD22 /* LocalDataSource.swift */; };
 		892D9064260B57FD0091DD22 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892D9063260B57FD0091DD22 /* RemoteDataSource.swift */; };
+		893232A0261032BA0035C241 /* HighlightButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8932329F261032BA0035C241 /* HighlightButton.swift */; };
 		897309C1260CA4BF00463ACF /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897309C0260CA4BF00463ACF /* MenuCell.swift */; };
 		897C71AC2609C6500049CA33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897C71AB2609C6500049CA33 /* AppDelegate.swift */; };
 		897C71B12609C6500049CA33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 897C71AF2609C6500049CA33 /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		892D905F260B57760091DD22 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		892D9061260B57F30091DD22 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
 		892D9063260B57FD0091DD22 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
+		8932329F261032BA0035C241 /* HighlightButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightButton.swift; sourceTree = "<group>"; };
 		897309C0260CA4BF00463ACF /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		897C71A82609C6500049CA33 /* FoodDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		897C71AB2609C6500049CA33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
+		8932329E2610327F0035C241 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				8932329F261032BA0035C241 /* HighlightButton.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		897C719F2609C6500049CA33 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +166,7 @@
 		897C71AA2609C6500049CA33 /* FoodDelivery */ = {
 			isa = PBXGroup;
 			children = (
+				8932329E2610327F0035C241 /* UI */,
 				89F19C7A260E4660002DDD57 /* Database */,
 				897C71DD2609F72B0049CA33 /* Builder */,
 				897C71D82609D3A90049CA33 /* Data */,
@@ -407,6 +418,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				893232A0261032BA0035C241 /* HighlightButton.swift in Sources */,
 				897C71D72609C7210049CA33 /* Food.swift in Sources */,
 				897C71AC2609C6500049CA33 /* AppDelegate.swift in Sources */,
 				89A5B877260ED15D003B94CC /* CartPresenter.swift in Sources */,
