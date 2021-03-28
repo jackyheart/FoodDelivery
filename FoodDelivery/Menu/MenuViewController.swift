@@ -157,8 +157,8 @@ class MenuViewController: UIViewController {
                                                             width: 75.0, spacing: 35.0,
                                                             fontSize: 22.0,
                                                             target: self, selector: #selector(menuTypeTapped(sender:)))
-        for i in 0 ..< self.menuTypeBtns.count {
-            let btn = self.menuTypeBtns[i]
+        for i in 0 ..< menuTypeBtns.count {
+            let btn = menuTypeBtns[i]
             
             var color: UIColor = .lightGray
             if i == 0 {
@@ -196,7 +196,7 @@ class MenuViewController: UIViewController {
     private func configureLabels() {
         counterLbl.backgroundColor = UIColor(displayP3Red: 31.0/255.0, green: 177.0/255.0,
                                                   blue: 65.0/255.0, alpha: 1.0)
-        counterLbl.layer.cornerRadius = self.counterLbl.bounds.width * 0.5
+        counterLbl.layer.cornerRadius = counterLbl.bounds.width * 0.5
         counterLbl.layer.masksToBounds = true
         counterLbl.isHidden = true
     }
@@ -207,7 +207,7 @@ class MenuViewController: UIViewController {
     }
     
     private func highlightMenuType(index: Int) {
-        for btn in self.menuTypeBtns {
+        for btn in menuTypeBtns {
             var color: UIColor = .lightGray
             if btn.tag == index {
                 color = .black
@@ -273,10 +273,10 @@ extension MenuViewController: UIScrollViewDelegate {
         
         promotionScrollView.alpha = (menuTopConstraint.constant / initialTopConstraint)
         
-        if self.cartBtn.isHidden {
-            self.cartBtn.isHidden = false
+        if cartBtn.isHidden {
+            cartBtn.isHidden = false
             UIView.animate(withDuration: 0.5) {
-                self.cartBtn.alpha = 1.0
+                cartBtn.alpha = 1.0
             }
         }
     }
@@ -284,7 +284,7 @@ extension MenuViewController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == promotionScrollView {
             let page = floor(scrollView.contentOffset.x / scrollView.bounds.width)
-            self.promotionPageControl.currentPage = Int(page)
+            promotionPageControl.currentPage = Int(page)
         }
     }
 }
