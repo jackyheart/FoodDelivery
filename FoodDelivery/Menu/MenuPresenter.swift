@@ -24,17 +24,21 @@ class MenuPresenter {
     }
     
     func onViewDidLoad() {
-        let menu = interactor.getMenuList()
-        
-        menu.subscribe(onNext: { [weak self] in
+        interactor.getMenuList()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                
+                //hold reference to current unfiltered data
+                self?.menuData = $0
+                
+                //set initial display with type 'pizza'
+                self?.view?.displayMenu(menu: $0.filter({ $0.type == MenuType.pizza.rawValue }))
             
-            //hold reference to current unfiltered data
-            self?.menuData = $0
-            
-            //set initial display with type 'pizza'
-            self?.view?.displayMenu(menu: $0.filter({ $0.type == MenuType.pizza.rawValue }))
-            
-        }).disposed(by: disposeBag)
+                }, onError: { [weak self] error in
+
+                    self?.view?.showError(errorMessage: error.localizedDescription)
+                }
+            ).disposed(by: disposeBag)
     }
     
     func onViewWillAppear() {

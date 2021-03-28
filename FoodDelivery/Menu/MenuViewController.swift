@@ -12,6 +12,7 @@ import RxCocoa
 
 protocol MenuViewProtocol: class {
     func displayMenu(menu: [Food])
+    func showError(errorMessage: String)
     func updateMenuType(menuType: MenuType)
     func updateCounter(counter: Int)
 }
@@ -248,6 +249,10 @@ extension MenuViewController: MenuViewProtocol {
     
     func displayMenu(menu: [Food]) {
         rxDataSource.accept(menu)
+    }
+    
+    func showError(errorMessage: String) {
+        print(errorMessage)
     }
     
     func updateMenuType(menuType: MenuType) {
