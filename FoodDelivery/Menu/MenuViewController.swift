@@ -16,8 +16,24 @@ protocol MenuViewProtocol: class {
     func updateCounter(counter: Int)
 }
 
-class MenuViewController: UIViewController {
+enum MenuType: String, CaseIterable {
+    case pizza
+    case sushi
+    case drinks
     
+    var intVal: Int {
+        switch self {
+        case .pizza:
+            return 0
+        case .sushi:
+            return 1
+        case .drinks:
+            return 2
+        }
+    }
+}
+
+class MenuViewController: UIViewController {
     @IBOutlet weak var promotionScrollView: UIScrollView!
     @IBOutlet weak var promotionPageControl: UIPageControl!
     @IBOutlet weak var menuContainerView: UIView!
@@ -29,8 +45,10 @@ class MenuViewController: UIViewController {
     private var initialTopConstraint: CGFloat = 0.0
     private var menuTypeBtns: [UIButton] = []
     private var presenter: MenuPresenter?
-    private let disposeBag = DisposeBag()
+    
+    //Rx
     private let rxDataSource = BehaviorRelay(value: [Food]())
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()

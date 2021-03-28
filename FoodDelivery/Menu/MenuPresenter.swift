@@ -8,23 +8,6 @@
 
 import RxSwift
 
-enum MenuType: String, CaseIterable {
-    case pizza
-    case sushi
-    case drinks
-    
-    var intVal: Int {
-        switch self {
-        case .pizza:
-            return 0
-        case .sushi:
-            return 1
-        case .drinks:
-            return 2
-        }
-    }
-}
-
 class MenuPresenter {
 
     private let interactor: MenuInteractorProtocol

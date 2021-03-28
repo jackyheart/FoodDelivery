@@ -10,14 +10,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+protocol CartViewProtocol: class {
+    func displayOrders(orders: Observable<[Order]>)
+}
+
 enum CartTitle: String, CaseIterable {
     case cart
     case orders
     case info
-}
-
-protocol CartViewProtocol: class {
-    func displayOrders(orders: Observable<[Order]>)
 }
 
 class CartViewController: UIViewController {
