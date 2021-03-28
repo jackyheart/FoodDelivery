@@ -22,18 +22,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VOm-Tu-3as">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="241"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="391"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="izZ-6S-GXv">
-                                <rect key="frame" x="168" y="178" width="39" height="37"/>
+                                <rect key="frame" x="168" y="319" width="39" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="nk0-yg-3bA"/>
                                     <constraint firstAttribute="width" constant="39" id="rd4-Er-MBY"/>
                                 </constraints>
                             </pageControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JnI-Po-dhh">
-                                <rect key="frame" x="0.0" y="214" width="375" height="453"/>
+                                <rect key="frame" x="0.0" y="364" width="375" height="303"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILTERS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sHt-pI-IAw">
                                         <rect key="frame" x="15" y="56" width="48" height="15"/>
@@ -46,7 +46,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XGB-FR-WAw">
-                                        <rect key="frame" x="0.0" y="95" width="375" height="358"/>
+                                        <rect key="frame" x="0.0" y="95" width="375" height="208"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="menuCell" rowHeight="320" id="YJL-hl-TiE" customClass="MenuCell" customModule="FoodDelivery" customModuleProvider="target">
@@ -168,11 +168,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="VOm-Tu-3as" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7tQ-lF-oRb"/>
                             <constraint firstAttribute="trailing" secondItem="tcs-mc-ENJ" secondAttribute="trailing" constant="15" id="9qZ-dt-bXw"/>
-                            <constraint firstItem="izZ-6S-GXv" firstAttribute="top" secondItem="DPe-cI-xWH" secondAttribute="bottom" constant="114" id="Hc5-Fb-YyV"/>
+                            <constraint firstItem="izZ-6S-GXv" firstAttribute="top" secondItem="DPe-cI-xWH" secondAttribute="bottom" constant="255" id="Hc5-Fb-YyV"/>
                             <constraint firstItem="FOI-f9-g17" firstAttribute="leading" secondItem="tcs-mc-ENJ" secondAttribute="trailing" constant="-15" id="KU2-dU-X3L"/>
                             <constraint firstItem="JnI-Po-dhh" firstAttribute="top" secondItem="VOm-Tu-3as" secondAttribute="bottom" constant="-27" id="MRH-fN-Nw9"/>
                             <constraint firstItem="tcs-mc-ENJ" firstAttribute="top" secondItem="FOI-f9-g17" secondAttribute="bottom" constant="-15" id="O8s-WU-sc4"/>
@@ -183,7 +183,7 @@
                             <constraint firstItem="JnI-Po-dhh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="bnG-dF-T5G"/>
                             <constraint firstAttribute="trailing" secondItem="VOm-Tu-3as" secondAttribute="trailing" id="fgg-V1-fUu"/>
                             <constraint firstAttribute="trailing" secondItem="FOI-f9-g17" secondAttribute="trailing" constant="14" id="kXg-3B-8i0"/>
-                            <constraint firstItem="JnI-Po-dhh" firstAttribute="top" secondItem="DPe-cI-xWH" secondAttribute="bottom" constant="150" id="s17-cC-P2G"/>
+                            <constraint firstItem="JnI-Po-dhh" firstAttribute="top" secondItem="DPe-cI-xWH" secondAttribute="bottom" constant="300" id="s17-cC-P2G"/>
                             <constraint firstItem="izZ-6S-GXv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xFD-qa-dpG"/>
                         </constraints>
                     </view>

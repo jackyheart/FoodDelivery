@@ -273,11 +273,12 @@ extension MenuViewController: UIScrollViewDelegate {
         let yOffset = scrollView.contentOffset.y
         
         let temp = initialTopConstraint - (yOffset)
+        let topLimit = UIApplication.shared.statusBarFrame.height + 10
         
-        if temp > 0.0 {
+        if temp > -topLimit {
             menuTopConstraint.constant = temp
         } else {
-            menuTopConstraint.constant = 0.0
+            menuTopConstraint.constant = -topLimit
         }
         
         promotionScrollView.alpha = (menuTopConstraint.constant / initialTopConstraint)
