@@ -13,7 +13,7 @@ import RxCocoa
 enum CartTitle: String, CaseIterable {
     case cart
     case orders
-    case information
+    case info
 }
 
 protocol CartViewProtocol: class {
@@ -65,7 +65,8 @@ class CartViewController: UIViewController {
         //configure title buttons
         titleBtns = Builder.shared.buildTitleButtonArray(titles: CartTitle.allCases.map({ $0.rawValue.capitalized }),
                                                          topLeft: CGPoint(x: 15.0, y: 70.0),
-                                                         width: 120.0, spacing: 0.0,
+                                                         width: 90.0, spacing: 35.0,
+                                                         fontSize: 25.0,
                                                          target: self, selector: #selector(titleTapped(sender:)))
         
         for i in 0 ..< titleBtns.count {

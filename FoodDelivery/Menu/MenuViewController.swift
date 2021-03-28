@@ -131,6 +131,7 @@ class MenuViewController: UIViewController {
         menuTypeBtns = Builder.shared.buildTitleButtonArray(titles: MenuType.allCases.map({ $0.rawValue.capitalized }),
                                                             topLeft: CGPoint(x: 15.0, y: 15.0),
                                                             width: 75.0, spacing: 35.0,
+                                                            fontSize: 22.0,
                                                             target: self, selector: #selector(menuTypeTapped(sender:)))
         for i in 0 ..< self.menuTypeBtns.count {
             let btn = self.menuTypeBtns[i]

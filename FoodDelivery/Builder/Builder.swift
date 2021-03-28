@@ -27,6 +27,7 @@ class Builder {
     
     func buildTitleButtonArray(titles: [String], topLeft: CGPoint,
                                width: CGFloat, spacing: CGFloat,
+                               fontSize: CGFloat,
                                target: Any?, selector: Selector) -> [UIButton] {
         var btnArr: [UIButton] = []
         for i in 0 ..< titles.count {
@@ -34,7 +35,7 @@ class Builder {
             let rect = CGRect(x: topLeft.x + (CGFloat(i) * (width + spacing)),
                               y: topLeft.y, width: width, height: 30)
             let btn = UIButton(frame: rect)
-            btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22.0)
+            btn.titleLabel?.font = UIFont.boldSystemFont(ofSize: fontSize)
             btn.setTitleColor(.black, for: .normal)
             btn.setTitle(title, for: .normal)
             btn.contentHorizontalAlignment = .left
