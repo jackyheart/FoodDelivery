@@ -7,12 +7,42 @@
 //
 
 import RxSwift
+import Moya
+import ObjectMapper
 
 class RemoteDataSource: DataSourceProtocol {
     
+    let provider = MoyaProvider<MenuAPI>(stubClosure: MoyaProvider.delayedStub(0.5))
+    
     func fetchMenu() -> Observable<[Food]> {
-        //fetch from api        
-        return Observable.empty()
+        
+        return Observable.create { [weak self] (observer) -> Disposable in
+
+            self?.provider.request(.getMenuList()) { result in
+                
+                switch result {
+                case .success(let response):
+                    do {
+                        
+                        if let jsonArr = try JSONSerialization.jsonObject(with: response.data, options: []) as? [[String: Any]] {
+                            
+                            let menu = Mapper<Food>().mapArray(JSONArray: jsonArr)
+                            observer.onNext(menu)
+                        }
+                    } catch {
+                        
+                        let error = NSError(domain: "", code: -2, userInfo: ["reason": "couldn't decode JSON"])
+                        observer.onError(error)
+                    }
+                case .failure:
+                    
+                    let error = NSError(domain: "", code: -1, userInfo: ["reason": "Server Not Available"])
+                    observer.onError(error)
+                }
+            }
+            
+            return Disposables.create { }
+        }
     }
     
     func addOrder(food: Food) {

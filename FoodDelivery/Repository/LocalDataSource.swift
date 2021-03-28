@@ -6,7 +6,6 @@
 //  Copyright © 2021 Jacky Tjoa. All rights reserved.
 //
 
-import Foundation
 import RxSwift
 import ObjectMapper
 
