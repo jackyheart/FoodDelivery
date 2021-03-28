@@ -126,8 +126,21 @@ class CartViewController: UIViewController {
         checkOutBtn.layer.masksToBounds = true
         checkOutBtn.layer.borderColor = UIColor.groupTableViewBackground.cgColor
         checkOutBtn.layer.borderWidth = 1.0
-        checkOutBtn.rx.tap.subscribe(onNext: {
-            print("checkout!")
+        checkOutBtn.rx.tap.subscribe(onNext: { [weak self] in
+            
+            //print("checkout!")
+            let alert = UIAlertController(title: "Confirmation", message: "Do you want to checkout?", preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                print("ok tapped")
+            })
+            alert.addAction(okAction)
+            
+            let cancelAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+            alert.addAction(cancelAction)
+            
+            self?.present(alert, animated: true, completion: nil)
+            
         }).disposed(by: disposeBag)
     }
     
