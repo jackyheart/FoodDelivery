@@ -114,7 +114,7 @@ class MenuViewController: UIViewController {
             imgView.image = image
             
             promotionScrollView.contentSize = CGSize(width: CGFloat(numBanners) * width,
-                                                     height: height - (navBarHeight + statusBarHeight))
+                                                     height: 100)
             promotionScrollView.addSubview(imgView)
             promotionScrollView.isPagingEnabled = true
             promotionScrollView.delegate = self
