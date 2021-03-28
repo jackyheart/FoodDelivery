@@ -47,6 +47,12 @@ class MenuViewController: UIViewController {
         presenter?.onViewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        presenter?.onViewWillAppear()
+    }
+    
     private func configureUI() {
         configureViews()
         configureButtons()

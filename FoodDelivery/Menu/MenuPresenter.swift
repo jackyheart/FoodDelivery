@@ -54,6 +54,10 @@ class MenuPresenter {
         }).disposed(by: disposeBag)
     }
     
+    func onViewWillAppear() {
+        updateCartCounter()
+    }
+    
     func onMenuTypeTapped(index: Int) {
         currentMenuType = MenuType.allCases[index]
         
@@ -85,8 +89,11 @@ class MenuPresenter {
     
     func onAddMenu(food: Food) {
         interactor.addOrder(food: food)
-        
-        interactor.getOrderist().subscribe(onNext: { [weak self] in
+        updateCartCounter()
+    }
+    
+    private func updateCartCounter() {
+        interactor.getOrderList().subscribe(onNext: { [weak self] in
             
             var total: Int = 0
             for order in $0 {
