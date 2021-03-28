@@ -1,5 +1,21 @@
 [{
-    "imageName": "pepperoni",
+    "imageName": "pizza",
+    "name": "Deluxe",
+    "type": "pizza",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "size": "100 grams, 30 cm",
+    "price": 25.0
+},
+{
+    "imageName": "pizza",
+    "name": "Hawaiian",
+    "type": "pizza",
+    "description": "",
+    "size": "150 grams, 35 cm",
+    "price": 35.0
+},
+{
+    "imageName": "pizza",
     "name": "Pepperoni",
     "type": "pizza",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
@@ -7,25 +23,9 @@
     "price": 25.0
 },
 {
-    "imageName": "pepperoni",
+    "imageName": "pizza",
     "name": "Margherita",
     "type": "pizza",
-    "description": "",
-    "size": "150 grams, 35 cm",
-    "price": 35.0
-},
-{
-    "imageName": "pepperoni",
-    "name": "Pepperoni2",
-    "type": "pizza",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "size": "100 grams, 30 cm",
-    "price": 25.0
-},
-{
-    "imageName": "pepperoni",
-    "name": "Margherita2",
-    "type": "pizza",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "size": "150 grams, 35 cm",
     "price": 35.0
@@ -33,24 +33,24 @@
 
 
 {
-    "imageName": "pepperoni",
-    "name": "Sushi#1",
+    "imageName": "sushi",
+    "name": "The egoist",
     "type": "sushi",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "size": "20 cm x 20 cm",
     "price": 40.0
 },
 {
-    "imageName": "pepperoni",
-    "name": "Sushi#2",
+    "imageName": "sushi",
+    "name": "California",
     "type": "sushi",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "size": "25 cm x 25 cm",
     "price": 50.0
 },
 {
-    "imageName": "pepperoni",
-    "name": "Sushi#3",
+    "imageName": "sushi",
+    "name": "Niigiri Set",
     "type": "sushi",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "size": "22.5 cm x 22.5 cm",
@@ -59,15 +59,7 @@
 
 
 {
-    "imageName": "pepperoni",
-    "name": "Water",
-    "type": "drinks",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "size": "200 ml",
-    "price": 1.0
-},
-{
-    "imageName": "pepperoni",
+    "imageName": "drinks",
     "name": "Coca Cola",
     "type": "drinks",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
@@ -75,7 +67,7 @@
     "price": 2.5
 },
 {
-    "imageName": "pepperoni",
+    "imageName": "drinks",
     "name": "Sprite",
     "type": "drinks",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
@@ -83,8 +75,24 @@
     "price": 2.5
 },
 {
-    "imageName": "pepperoni",
+    "imageName": "drinks",
     "name": "Fanta",
+    "type": "drinks",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "size": "320 ml",
+    "price": 2.5
+},
+{
+    "imageName": "drinks",
+    "name": "7 Up",
+    "type": "drinks",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "size": "320 ml",
+    "price": 2.5
+},
+{
+    "imageName": "drinks",
+    "name": "Mountain Dew",
     "type": "drinks",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "size": "320 ml",
