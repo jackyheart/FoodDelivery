@@ -94,9 +94,17 @@ class CartViewController: UIViewController {
     }
     
     private func configureButtons() {
+        
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        
+        var navBarHeight: CGFloat = 0.0
+        if let navBar = navigationController?.navigationBar {
+            navBarHeight = navBar.frame.height
+        }
+        
         //configure title buttons
         titleBtns = Builder.shared.buildTitleButtonArray(titles: CartTitle.allCases.map({ $0.rawValue.capitalized }),
-                                                         topLeft: CGPoint(x: 15.0, y: 70.0),
+                                                         topLeft: CGPoint(x: 15.0, y: statusBarHeight + navBarHeight),
                                                          width: 90.0, spacing: 35.0,
                                                          fontSize: 25.0,
                                                          target: self, selector: #selector(titleTapped(sender:)))
