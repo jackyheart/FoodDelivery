@@ -83,11 +83,17 @@ class CartViewController: UIViewController {
             orderCell.cancelBtn.rx.tap.subscribe(onNext: { [weak self] in
                 
                 let updatedOrder = self?.presenter?.onCancelOrderBtnTapped(order: order)
-                updatedOrder?.subscribe(onNext: { [weak self] in
-                    
-                    self?.rxDataSource.accept($0)
-                    
-                }).disposed(by: orderCell.disposeBag)
+                updatedOrder?
+                    .observeOn(MainScheduler.instance)
+                    .subscribe(onNext: { [weak self] in
+                        
+                        self?.rxDataSource.accept($0)
+                        self?.updateTotalPrice(orders: $0)
+                        
+                    }, onError: { [weak self] error in
+                        self?.showError(errorMessage: error.localizedDescription)
+                    }
+                ).disposed(by: orderCell.disposeBag)
                 
             }).disposed(by: orderCell.disposeBag)
             
@@ -158,6 +164,16 @@ class CartViewController: UIViewController {
     @objc private func backTapped() {
         presenter?.onBackTapped()
     }
+    
+    private func updateTotalPrice(orders: [Order]) {
+        //show/hide empty message
+        emptyLbl.isHidden = (orders.count == 0) ? false : true
+        
+        //display total
+        if let presenter = self.presenter {
+            totalPriceLbl.text = "SGD \(presenter.getTotal(orders: orders))"
+        }
+    }
 }
 
 extension CartViewController: CartViewProtocol {
@@ -168,14 +184,7 @@ extension CartViewController: CartViewProtocol {
             .subscribe(onNext: { [weak self] in
                 
                 self?.rxDataSource.accept($0)
-                
-                if $0.count == 0 {
-                    self?.emptyLbl.isHidden = false
-                }
-                
-                if let presenter = self?.presenter {
-                    self?.totalPriceLbl.text = "SGD \(presenter.getTotal(orders: $0))"
-                }
+                self?.updateTotalPrice(orders: $0)
                 
             }, onError: { [weak self] error in
                 self?.showError(errorMessage: error.localizedDescription)
