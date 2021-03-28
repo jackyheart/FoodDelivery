@@ -345,7 +345,7 @@
                                 <state key="normal" image="creditcard"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5pB-Ug-gAW" firstAttribute="top" secondItem="3t1-Bu-yhw" secondAttribute="bottom" constant="88" id="0ci-vS-k5K"/>
                             <constraint firstItem="5pB-Ug-gAW" firstAttribute="top" secondItem="R16-MP-ecu" secondAttribute="bottom" constant="13" id="4Ry-SX-nh6"/>
