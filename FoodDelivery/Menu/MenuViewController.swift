@@ -276,7 +276,7 @@ extension MenuViewController: UIScrollViewDelegate {
         if cartBtn.isHidden {
             cartBtn.isHidden = false
             UIView.animate(withDuration: 0.5) {
-                cartBtn.alpha = 1.0
+                self.cartBtn.alpha = 1.0
             }
         }
     }
