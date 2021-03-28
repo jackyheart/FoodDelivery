@@ -89,6 +89,13 @@ class MenuViewController: UIViewController {
     
     private func configureViews() {
         
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        
+        var navBarHeight: CGFloat = 0.0
+        if let navBar = navigationController?.navigationBar {
+            navBarHeight = navBar.frame.height
+        }
+        
         //add promotion banners
         let numBanners = 3
         for i in 0 ..< numBanners {
@@ -98,13 +105,15 @@ class MenuViewController: UIViewController {
             let width = self.view.bounds.width
             let height = promotionScrollView.bounds.height
             
-            let rect = CGRect(x: CGFloat(i) * width, y: 0, width: width, height: height)
+            let rect = CGRect(x: CGFloat(i) * width, y: -(navBarHeight + statusBarHeight),
+                              width: width, height: height + statusBarHeight)
             let imgView = UIImageView(frame: rect)
             imgView.contentMode = .scaleAspectFill
             imgView.clipsToBounds = true
             imgView.image = image
             
-            promotionScrollView.contentSize = CGSize(width: CGFloat(numBanners) * width, height: height)
+            promotionScrollView.contentSize = CGSize(width: CGFloat(numBanners) * width,
+                                                     height: height - (navBarHeight + statusBarHeight))
             promotionScrollView.addSubview(imgView)
             promotionScrollView.isPagingEnabled = true
             promotionScrollView.delegate = self
