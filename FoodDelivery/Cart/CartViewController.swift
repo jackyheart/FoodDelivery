@@ -12,6 +12,7 @@ import RxCocoa
 
 protocol CartViewProtocol: class {
     func displayOrders(orders: Observable<[Order]>)
+    func showError(errorMessage: String)
 }
 
 enum CartTitle: String, CaseIterable {
@@ -162,20 +163,28 @@ class CartViewController: UIViewController {
 extension CartViewController: CartViewProtocol {
     
     func displayOrders(orders: Observable<[Order]>) {
-        
-        orders.subscribe(onNext: { [weak self] in
-            
-            self?.rxDataSource.accept($0)
-            
-            if $0.count == 0 {
-                self?.emptyLbl.isHidden = false
+        orders
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                
+                self?.rxDataSource.accept($0)
+                
+                if $0.count == 0 {
+                    self?.emptyLbl.isHidden = false
+                }
+                
+                if let presenter = self?.presenter {
+                    self?.totalPriceLbl.text = "SGD \(presenter.getTotal(orders: $0))"
+                }
+                
+            }, onError: { [weak self] error in
+                self?.showError(errorMessage: error.localizedDescription)
             }
-            
-            if let presenter = self?.presenter {
-                self?.totalPriceLbl.text = "SGD \(presenter.getTotal(orders: $0))"
-            }
-            
-        }).disposed(by: disposeBag)
+        ).disposed(by: disposeBag)
+    }
+    
+    func showError(errorMessage: String) {
+        print(errorMessage)
     }
 }
 
