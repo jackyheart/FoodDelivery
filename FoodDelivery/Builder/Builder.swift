@@ -25,9 +25,9 @@ class Builder {
         return CartPresenter(interactor: interactor, router: router, view: view)
     }
     
-    func generateMenuTypeButtonArray(titles: [String], topLeft: CGPoint,
-                                     width: CGFloat, spacing: CGFloat,
-                                     target: Any?, selector: Selector) -> [UIButton] {
+    func buildTitleButtonArray(titles: [String], topLeft: CGPoint,
+                               width: CGFloat, spacing: CGFloat,
+                               target: Any?, selector: Selector) -> [UIButton] {
         var btnArr: [UIButton] = []
         for i in 0 ..< titles.count {
             let title = titles[i]
@@ -45,9 +45,9 @@ class Builder {
         return btnArr
     }
     
-    func generateFiltersButtonArray(titles: [String], topLeft: CGPoint,
-                                    width: CGFloat, spacing: CGFloat,
-                                    target: Any?, selector: Selector) -> [UIButton] {
+    func buildOptionButtonArray(titles: [String], topLeft: CGPoint,
+                                width: CGFloat, spacing: CGFloat,
+                                target: Any?, selector: Selector) -> [UIButton] {
         var btnArr: [UIButton] = []
         let height: CGFloat = 20.0
         for i in 0 ..< titles.count {

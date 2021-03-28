@@ -128,10 +128,10 @@ class MenuViewController: UIViewController {
 
     private func configureButtons() {
         //configure menu buttons
-        menuTypeBtns = Builder.shared.generateMenuTypeButtonArray(titles: MenuType.allCases.map({ $0.rawValue.capitalized }),
-                                                                  topLeft: CGPoint(x: 15.0, y: 15.0),
-                                                                  width: 75.0, spacing: 35.0,
-                                                                  target: self, selector: #selector(menuTypeTapped(sender:)))
+        menuTypeBtns = Builder.shared.buildTitleButtonArray(titles: MenuType.allCases.map({ $0.rawValue.capitalized }),
+                                                            topLeft: CGPoint(x: 15.0, y: 15.0),
+                                                            width: 75.0, spacing: 35.0,
+                                                            target: self, selector: #selector(menuTypeTapped(sender:)))
         for i in 0 ..< self.menuTypeBtns.count {
             let btn = self.menuTypeBtns[i]
             
@@ -146,9 +146,9 @@ class MenuViewController: UIViewController {
         
         //configure filter buttons
         let filters = ["Spicy", "Vegan"]
-        let btnFilters = Builder.shared.generateFiltersButtonArray(titles: filters, topLeft: CGPoint(x: 75.0, y: 53.0),
-                                                                   width: 60.0, spacing: 15.0,
-                                                                   target: self, selector: #selector(filterBtnTapped(sender:)))
+        let btnFilters = Builder.shared.buildOptionButtonArray(titles: filters, topLeft: CGPoint(x: 75.0, y: 53.0),
+                                                               width: 60.0, spacing: 15.0,
+                                                               target: self, selector: #selector(filterBtnTapped(sender:)))
         for btn in btnFilters {
             menuContainerView.addSubview(btn)
         }

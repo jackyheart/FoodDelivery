@@ -10,17 +10,25 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+enum CartTitle: String, CaseIterable {
+    case cart
+    case orders
+    case information
+}
+
 protocol CartViewProtocol: class {
     func displayOrders(orders: Observable<[Order]>)
 }
 
 class CartViewController: UIViewController {
+    @IBOutlet weak var emptyLbl: UILabel!
     @IBOutlet weak var cartTableView: UITableView!
     @IBOutlet weak var totalPriceLbl: UILabel!
     @IBOutlet weak var checkOutBtn: UIButton!
     
-    private let disposeBag = DisposeBag()
+    private var titleBtns: [UIButton] = []
     private var presenter: CartPresenter?
+    private let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +49,11 @@ class CartViewController: UIViewController {
     private func configureViews() {
         
         //navigation bar
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "< menu", style: .plain, target: self, action: #selector(backTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "< Menu", style: .plain, target: self, action: #selector(backTapped))
+        navigationItem.leftBarButtonItem?.tintColor = .black
+        
+        //empty title
+        emptyLbl.isHidden = true
         
         //table view
         cartTableView.separatorStyle = .none
@@ -50,6 +62,24 @@ class CartViewController: UIViewController {
     }
     
     private func configureButtons() {
+        //configure title buttons
+        titleBtns = Builder.shared.buildTitleButtonArray(titles: CartTitle.allCases.map({ $0.rawValue.capitalized }),
+                                                         topLeft: CGPoint(x: 15.0, y: 70.0),
+                                                         width: 120.0, spacing: 0.0,
+                                                         target: self, selector: #selector(titleTapped(sender:)))
+        
+        for i in 0 ..< titleBtns.count {
+            let btn = titleBtns[i]
+            
+            var color: UIColor = .lightGray
+            if i == 0 {
+                color = .black
+            }
+            btn.setTitleColor(color, for: .normal)
+            
+            self.view.addSubview(btn)
+        }
+        
         //configure checkout button
         checkOutBtn.layer.cornerRadius = checkOutBtn.bounds.width * 0.5
         checkOutBtn.layer.masksToBounds = true
@@ -58,6 +88,16 @@ class CartViewController: UIViewController {
         checkOutBtn.rx.tap.subscribe(onNext: {
             print("checkout!")
         }).disposed(by: disposeBag)
+    }
+    
+    @objc private func titleTapped(sender: UIButton) {
+        for btn in titleBtns {
+            var color: UIColor = .lightGray
+            if btn.tag == sender.tag {
+                color = .black
+            }
+            btn.setTitleColor(color, for: .normal)
+        }
     }
     
     @objc private func backTapped() {
@@ -99,6 +139,10 @@ extension CartViewController: CartViewProtocol {
         
         orders.subscribe(onNext: { [weak self] in
 
+            if $0.count == 0 {
+                self?.emptyLbl.isHidden = false
+            }
+            
             if let presenter = self?.presenter {
                 self?.totalPriceLbl.text = "SGD \(presenter.getTotal(orders: $0))"
             }
